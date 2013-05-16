@@ -154,14 +154,24 @@ if ($text_file_creation)
 <link rel="stylesheet" href="jquery-ui-1.10.2.custom/css/smoothness/jquery-ui-1.10.2.custom.min.css" />
 <script src="jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
  <link rel="stylesheet" href="/resources/demos/style.css" />
-  
+  <style typ="text/css">
+  .ui-menu { width: 240px; }
+  .noborder{border:0; margin:0px;padding:0px}
+  </style>
   <script>
   $(function(){
 	  
 	 $( "#list_acc" ).accordion({collapsible:true,active:null,heightStyle: "content",autoHeight:false});
     $( "#accordion" ).accordion({collapsible:true,heightStyle: "content",event: "click hoverintent"});
-    });
+	$("#menu_one").menu();
+	$("#menu_two").menu();
+	$("#menu_three").menu();
 
+	$("#menuone").menu();
+	$("#menutwo").menu();
+	$("#menuthree").menu();
+    });
+  
   $.event.special.hoverintent = {
 		    setup: function() {
 		      $( this ).bind( "mouseover", jQuery.event.special.hoverintent.handler );
@@ -1267,27 +1277,78 @@ if ($text_file_creation)
 
       // components of html
       function connection_table_head($title) {
-        $html = "<table width='80%' border='0' cellspacing='2' cellpadding='0'>
-          <tr>
-          <td width='100%' align='center' class='table_neuron_page3'>
-          $title
-          </td>			
-          </tr>			
-          </table>		
+		if($title=="Targets Of Output")
+		{
+          	$html = "<table width='80%' border='0' cellspacing='2' cellpadding='0'>
+          	<tr>
+          	<td width='100%' align='center' class='table_neuron_page3'>
+          	$title
+          	</td>			
+          	</tr>			
+          	</table>		
 
-          <table width='80%' border='0' cellspacing='2' cellpadding='0'>
-          <tr>
-          <td width='20%' align='left'>
-          </td>	
-          <td width='800%' align='left'>
-          <font color='#009900' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Excitatory </font> or  
-          <font color='#CC0000' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Inhibitory </font>
-          </td>		
-          </tr>			
-          </table>
+          	<table width='80%' border='0' cellspacing='2' cellpadding='2'>
+          	<tr>
+          	<td width='20%' align='left' class='noborder'></td>
+          	<td width='25%' align='left'><strong>Known Targets Of Outputs</strong></td>
+			<td width='25%' align='left'><strong>Potential Targets Of Output</strong></td>
+          	<td width='30%' align='left'><strong>Potential Targets Of Output Known to be avoided</strong></td>
+          	</tr>
+          	<tr>
+          	<td width='20%' align='left' class='noborder'></td>
+          	<td width='25%' align='left'>
+          	<font color='#009900' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Excitatory </font> or  
+          	<font color='#CC0000' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Inhibitory </font>
+          	</td>		
+          	<td width='25%' align='left'>
+          	<font color='#009900' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Excitatory </font> or  
+          	<font color='#CC0000' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Inhibitory </font>
+          	</td>
+          	<td width='30%' align='left'>
+          	<font color='#009900' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Excitatory </font> or  
+          	<font color='#CC0000' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Inhibitory </font>
+          	</td>
+          	</tr>
+          	<tr>
+          	<td width='20%' align='left' class='noborder'></td>";
+        	return $html;
+		}
+		else
+		{	
+			$html = "<table width='80%' border='0' cellspacing='2' cellpadding='0'>
+          	<tr>
+          	<td width='100%' align='center' class='table_neuron_page3'>
+          	$title
+          	</td>			
+          	</tr>			
+          	</table>		
 
-          <table width='80%' border='0' cellspacing='2' cellpadding='0'>";
-        return $html;
+          	<table width='80%' border='0' cellspacing='2' cellpadding='2'>
+          	<tr>
+          	<td width='20%' align='left' class='noborder'></td>
+          	<td width='25%' align='left'><strong>Known Sources Of Inputs</strong></td>
+			<td width='25%' align='left'><strong>Potential Sources Of Input</strong></td>
+          	<td width='30%' align='left'><strong>Potential Sources Of Inputs Known to be avoided</strong></td>
+          	</tr>
+          	<tr>
+          	<td width='20%' align='left' class='noborder'></td>
+          	<td width='25%' align='left'>
+          	<font color='#009900' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Excitatory </font> or  
+          	<font color='#CC0000' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Inhibitory </font>
+          	</td>		
+          	<td width='25%' align='left'>
+          	<font color='#009900' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Excitatory </font> or  
+          	<font color='#CC0000' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Inhibitory </font>
+          	</td>
+          	<td width='30%' align='left'>
+          	<font color='#009900' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Excitatory </font> or  
+          	<font color='#CC0000' face='Verdana, Arial, Helvetica, sans-serif' size='2'>Inhibitory </font>
+          	</td>
+          	</tr>
+          	<tr>
+          	<td width='20%' align='left' class='noborder'></td>";
+        	return $html;
+		}
       }
 
       function get_excit_inhib_font_class($name) {
@@ -1304,26 +1365,20 @@ if ($text_file_creation)
         $id = $record["id"];
         $font_class = get_excit_inhib_font_class($name);
         $html =
-          "<tr>
-            <td width='20%' align='right'/>
-            <td align='left' width='80%' class='table_neuron_page2'>
+          "<li class='table_neuron_page2' align=left>
               <a href='neuron_page.php?id=$id' target='_blank' class='$font_class'>
-                $name
+               <font class='$font_class'> $name</font>
               </a>
-            </td>					
-          </tr>";					
+              </li>";					
         return $html;
       }
 
       function name_row_none($name_none) { // the list of targets or sources is empty
         $html =
-          "<tr>
-            <td width='20%' align='right'/>
-            <td align='left' width='80%' class='table_neuron_page2'>
+          "<li class='table_neuron_page2'>
                 $name_none
               </a>
-            </td>					
-          </tr>";					
+              </li>";					
         return $html;
       }
 
@@ -1387,48 +1442,96 @@ if ($text_file_creation)
 
 // Start R 2C connectivity changes
       // print it out
-      print connection_table_head("Known targets of output");
+      print connection_table_head("Targets Of Output");
 	  if (count($list_explicit_targets) < 1) // the list of targets or sources is empty
-			print name_row_none("none known");
+	  {
+	  		print("<td width='25%' valign='top'><ul id='menu_one'>");
+	  		print name_row_none("none known");
+	  		print("</ul></td>");
+	  }
 	  else
+	  {
+	  		print("<td width='25%' valign='top' align='left'><ul id='menu_one'>");
 			foreach($list_explicit_targets as $target) { print name_row($target); }
-	  print connection_table_foot();
+	 		print("</ul></td>");
+	  }
+	 //<!--me print connection_table_foot();
 
-      print connection_table_head("Potential targets of output");
+     //<!-- me print connection_table_head("Potential targets of output");
 	  if (count($list_potential_targets) < 1) // the list of targets or sources is empty
-			print name_row_none("none known");
+	  {	
+	  		print("<td width='25%' valign='top' align='left'><ul id='menu_two'>");
+	  		print name_row_none("none known");
+	  		print("</ul></td>");
+	  }
 	  else
+	  {
+	  		print("<td width='25%' valign='top' align='left'><ul id='menu_two'>");
 			foreach($list_potential_targets as $target) { print name_row($target); }
+			print("</ul></td>");
+	  }
 	  //foreach($net_targets as $target) { print name_row($target); }
-	  print connection_table_foot();
+	 // <!---me print connection_table_foot();
 
-      print connection_table_head("Potential targets of output known to be avoided");
+     //<!-- me print connection_table_head("Potential targets of output known to be avoided");
 	  if (count($list_explicit_nontargets) < 1) // the list of targets or sources is empty
-			print name_row_none("none known");
+	  {
+	  		print("<td width='30%' valign='top' align='left'><ul id='menu_three'>");
+	  	    print name_row_none("none known");
+	  	    print("</ul></td></tr>");
+	  }
 	  else
+	  {
+	  		print("<td width='30%' valign='top' align='left'><ul id='menu_three'>");
 			foreach($list_explicit_nontargets as $target) { print name_row($target); }
-	  print connection_table_foot();
+			print("</ul></td></tr>");	
+	  }
+			print connection_table_foot();
 
-      print connection_table_head("Known sources of input");
+      print connection_table_head("Sources Of Input");
 	  if (count($list_explicit_sources) < 1) // the list of targets or sources is empty
-			print name_row_none("none known");
+	  {
+	  	print("<td width='25%' valign='top'><ul id='menuone'>");
+	  	print name_row_none("none known");
+	  	print("</ul></td>");
+	  }
 	  else
+	  {
+	  		print("<td width='25%' valign='top'><ul id='menuone'>");
 			foreach($list_explicit_sources as $target) { print name_row($target); }
-	  print connection_table_foot();
+	  		print("</ul></td>");
+	  }
+	  //<!--- meprint connection_table_foot();
 
-      print connection_table_head("Potential sources of input");
+      //<!---me print connection_table_head("Potential sources of input");
 	  if (count($list_potential_sources) < 1) // the list of targets or sources is empty
-			print name_row_none("none known");
+	  {
+	  	print("<td width='25%' valign='top'><ul id='menutwo'>");
+	  	print name_row_none("none known");
+	  	print("</ul></td>");
+	  }
 	  else
+	  {
+	  		print("<td width='25%' valign='top'><ul id='menutwo'>");
 			foreach($list_potential_sources as $source) { print name_row($source); }
+			print("</ul></td>");
+	  }
 	  //foreach($net_sources as $source) { print name_row($source); }
-	  print connection_table_foot();
+	  //<!---meprint connection_table_foot();
 	
-      print connection_table_head("Potential sources of input known to be avoided");
+      //<!--me print connection_table_head("Potential sources of input known to be avoided");
 	  if (count($list_explicit_nonsources) < 1) // the list of targets or sources is empty
-			print name_row_none("none known");
+	  {
+	  	print("<td width='25%' valign='top'><ul id='menuthree'>");
+	  	print name_row_none("none known");
+	  	print("</ul></td>");
+	  }
 	  else
+	  {
+	  		print("<td width='25%' valign='top'><ul id='menuthree'>");
 			foreach($list_explicit_nonsources as $target) { print name_row($target); }
+			print("</ul></td>");
+	  }
 	  print connection_table_foot();
 
 // End R 2C connectivity changes
