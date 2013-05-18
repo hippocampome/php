@@ -453,23 +453,123 @@ width:1026px;
 
 /* ------------------------------- */
 
-/* Change with resolution ------------------------------------------------------------- */	
+/* Change with resolution ------------------------------------------------------------- */
+
+.ie .td_border_color1 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:red;
+	border-right-width:2;
+}
+
+.ie .td_border_color2 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:red;
+	border-left-width:2;
+}
+
 .td_border_color1 {
 	color:#000099;
 	font-size:11px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
-	border-right-color:#FF0000;
+	border-right-color:red;
 	border-right-width:medium;
 }
+
+.check4 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:red;
+	border-right-width:medium;
+}
+
+.check9 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:red;
+	border-right-width:medium;
+}
+
+.check13 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:red;
+	border-right-width:medium;
+}
+
+.check17 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:red;
+	border-right-width:medium;
+}
+
+.check20 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:red;
+	border-right-width:medium;
+}
+
 
 /* Change with resolution ------------------------------------------------------------- */	
 .td_border_color2 {
 	color:#000099;
 	font-size:11px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
-	border-left-color:#FF0000;
+	border-left-color:red;
 	border-left-width:medium;
 }
+
+.check5{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:red;
+	border-left-width:medium;
+}
+
+.check10{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:red;
+	border-left-width:medium;
+}
+
+.check14{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:red;
+	border-left-width:medium;
+}
+
+.check18{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:red;
+	border-left-width:medium;
+}
+
+.check21{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:red;
+	border-left-width:medium;
+}
+
+
 
 /* Change with resolution ------------------------------------------------------------- */	
 .version {
@@ -478,6 +578,7 @@ width:1026px;
 	width:50%;
 	border:none;
 }
+
 
 /* Change with resolution ------------------------------------------------------------- */	
 .version2 {
@@ -742,9 +843,12 @@ width:1026px;
 	background:#fff;
 }
 
-
 .table_clr_internal {
   position:absolute;
   top:90px;
   left:20px;
+}
+
+#for_ie{
+	width:33.1%;
 }

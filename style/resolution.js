@@ -27,7 +27,28 @@ else if ((w == 1024) && (h == 768))
 }
 else
 {
-	 document.write("<link rel='stylesheet' type='text/css' href='style/style.css'>");
+	 //document.write("<![if IE]><link href='style/ie_style.css' rel='stylesheet' type='text/css'/><![endif]>");
+	 //document.write("<![if !IE]><link rel='stylesheet' type='text/css' href='style/style.css'/><![endif]>");
+
+	 	if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+		 document.write("<link rel='stylesheet' type='text/css' href='style/style_firefox.css'/>");
+		}
+
+	 	else if (navigator.userAgent.toLowerCase().indexOf("chrome") > -1) {
+			document.write("<link rel='stylesheet' type='text/css' href='style/style.css'/>");
+		}
+	 	else if(navigator.userAgent.indexOf("Opera") > 0 ) 
+		{
+			document.write("<link rel='stylesheet' type='text/css' href='style/style_opera.css'/>");	
+		}
+	 	
+	 	else if (navigator.userAgent.indexOf("MSIE") > 0 )
+	 	{
+	 		document.write("<link href='style/ie_style.css' rel='stylesheet' type='text/css'/>");
+	 	}
+		else
+		{
+			 document.write("<link href='style/style_opera.css' rel='stylesheet' type='text/css'/>");
+		}
+
 }
-
-

@@ -35,7 +35,6 @@ function check_color($variable, $unvetted)
 			$link[0] = "<img src='images/morphology/axons_present.png' border='0'/>";
 		
 		$link[1] = $variable;
-	
 	}
 	if ($variable == 'blue')
 	{
@@ -153,7 +152,351 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <?php include ("function/icon.html"); ?>
 <title>Morphology Matrix</title>
+<script src="jquery-ui-1.10.2.custom/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="style/resolution.js"></script>
+
+<script>
+$(function(){
+	$('.check_1').click(function () {
+
+		if (this.checked)
+		{
+			$(".check1").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check1").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_2').click(function () {
+
+		if (this.checked)
+		{
+			$(".check2").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check2").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_3').click(function () {
+
+		if (this.checked)
+		{
+			$(".check3").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check3").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_4').click(function () {
+
+		if (this.checked)
+		{
+			$(".check4").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check4").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_5').click(function () {
+
+		if (this.checked)
+		{
+			$(".check5").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check5").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_6').click(function () {
+
+		if (this.checked)
+		{
+			$(".check6").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check6").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_7').click(function () {
+
+		if (this.checked)
+		{
+			$(".check7").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check7").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_8').click(function () {
+
+		if (this.checked)
+		{
+			$(".check8").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check8").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_9').click(function () {
+
+		if (this.checked)
+		{
+			$(".check9").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check9").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_10').click(function () {
+
+		if (this.checked)
+		{
+			$(".check10").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check10").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_11').click(function () {
+
+		if (this.checked)
+		{
+			$(".check11").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check11").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_12').click(function () {
+
+		if (this.checked)
+		{
+			$(".check12").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check12").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_13').click(function () {
+
+		if (this.checked)
+		{
+			$(".check13").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check13").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_14').click(function () {
+
+		if (this.checked)
+		{
+			$(".check14").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check14").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_15').click(function () {
+
+		if (this.checked)
+		{
+			$(".check15").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check15").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_16').click(function () {
+
+		if (this.checked)
+		{
+			$(".check16").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check16").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_17').click(function () {
+
+		if (this.checked)
+		{
+			$(".check17").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check17").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_18').click(function () {
+
+		if (this.checked)
+		{
+			$(".check18").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check18").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_19').click(function () {
+
+		if (this.checked)
+		{
+			$(".check19").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check19").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_20').click(function () {
+
+		if (this.checked)
+		{
+			$(".check20").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check20").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_21').click(function () {
+
+		if (this.checked)
+		{
+			$(".check21").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check21").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_22').click(function () {
+
+		if (this.checked)
+		{
+			$(".check22").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check22").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_23').click(function () {
+
+		if (this.checked)
+		{
+			$(".check23").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check23").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_24').click(function () {
+
+		if (this.checked)
+		{
+			$(".check24").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check24").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_25').click(function () {
+
+		if (this.checked)
+		{
+			$(".check25").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check25").css({"backgroundColor": ''});
+		}
+	  });
+
+	$('.check_26').click(function () {
+
+		if (this.checked)
+		{
+			$(".check26").css({"backgroundColor": '#EBF283'});
+		}
+		
+		if (!this.checked)
+		{
+			$(".check26").css({"backgroundColor": ''});
+		}
+	  });
+});
+
+</script>
 </head>
 
 <body>
@@ -273,12 +616,11 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 	</tr>
 
 	<tr>
-		<td>
-		
+		<td>		
 			<table border="1" cellspacing="0" cellpadding="0" class='table_11'>
 			  <tr height="50px">
-				<td width="26.3%" align="center" colspan="3">	
-					<font class='font1'>Neuron Type	</font>
+				<td align="center" colspan="3" rowspan="2" id="for_ie">	
+					<font class='font1'>Neuron Type</font>
 				</td>			
 				<td width="2%" align="center" >	
 					<img src="images/name/SMo.png" width="10px" border='0'/>
@@ -364,7 +706,92 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					<img src="images/name/VI.png" width="10px" border='0'/>
 				</td>
 			  </tr>
-			</table>
+<tr>
+<td width="2%" align="center" bgcolor='#770000'>	
+	<input type="checkbox" name="check" value="check1" class="check_1" border='0'/>
+				</td>			
+				<td width="2%" align="center" bgcolor='#770000'>	
+				<input type="checkbox" name="check" value="check2" width="10px" class="check_2" border='0'/>
+				</td>				
+				<td width="2%" align="center" bgcolor='#770000'>	
+					<input type="checkbox" name="check" value="check3" class="check_3" border='0'/>
+				</td>
+				<td width="2%" align="center" bgcolor='#770000' class='td_border_color1'>	
+					<input type="checkbox" name="check" value="check4" class="check_4" border='0'/>
+				</td>
+				
+				<td width="2%" align="center" bgcolor='#C08181' class='td_border_color2'>	
+					<input type="checkbox" name="check" value="check5" class="check_5" border='0'/>
+				</td>			
+				<td width="2%" align="center" bgcolor='#C08181'>	
+					<input type="checkbox" name="check" value="check6" class="check_6" border='0'/>
+				</td>				
+				<td width="2%" align="center" bgcolor='#C08181'>	
+					<input type="checkbox" name="check" value="check7" class="check_7" border='0'/>
+				</td>
+				<td width="2%" align="center" bgcolor='#C08181' >	
+					<input type="checkbox" name="check" value="check8" class="check_8" border='0'/>
+				</td>			
+				<td width="2%" align="center" bgcolor='#C08181' class='td_border_color1'>	
+					<input type="checkbox" name="check" value="check9" class="check_9" border='0'/>
+				</td>			
+				
+				<td width="2%" align="center" bgcolor="#FFFF99" class='td_border_color2'>	
+					<input type="checkbox" name="check" value="check10" class="check_10" border='0'/>
+				</td>			
+				<td width="2%" align="center" bgcolor="#FFFF99">	
+					<input type="checkbox" name="check" value="check11" class="check_11" border='0'/>
+				</td>				
+				<td width="2%" align="center" bgcolor="#FFFF99">	
+					<input type="checkbox" name="check" value="check12" class="check_12" border='0'/>
+				</td>
+				<td width="2%" align="center" bgcolor="#FFFF99" class='td_border_color1'>	
+					<input type="checkbox" name="check" value="check13" class="check_13" border='0'/>
+				</td>			
+				
+				<td width="2%" align="center" bgcolor="#FF6103" class='td_border_color2'>	
+					<input type="checkbox" name="check" value="check14" class="check_14" border='0'/>
+				</td>			
+				<td width="2%" align="center" bgcolor="#FF6103">	
+					<input type="checkbox" name="check" value="check15" class="check_15" border='0'/>
+				</td>				
+				<td width="2%" align="center" bgcolor="#FF6103">	
+					<input type="checkbox" name="check" value="check16" class="check_16" border='0'/>
+				</td>
+				<td width="2%" align="center" bgcolor="#FF6103" class='td_border_color1'>	
+					<input type="checkbox" name="check" value="check17" class="check_17" border='0'/>
+				</td>			
+	
+				<td width="2%" align="center" bgcolor="#FFCC33" class='td_border_color2'>	
+					<input type="checkbox" name="check" value="check18" class="check_18" border='0'/>
+				</td>				
+				<td width="2%" align="center" bgcolor="#FFCC33">	
+					<input type="checkbox" name="check" value="check19" class="check_19" border='0'/>
+				</td>
+				<td width="2%" align="center" bgcolor="#FFCC33" class='td_border_color1'>	
+					<input type="checkbox" name="check" value="check20" class="check_20" border='0'/>
+				</td>	
+				
+				<td width="2%" align="center" bgcolor="#336633" class='td_border_color2'>	
+					<input type="checkbox" name="check" value="check21" class="check_21" border='0'/>
+				</td>				
+				<td width="2%" align="center" bgcolor="#336633">	
+					<input type="checkbox" name="check" value="check22" class="check_22" border='0'/>
+				</td>
+				<td width="2%" align="center" bgcolor="#336633">	
+					<input type="checkbox" name="check" value="check23" class="check_23" border='0'/>
+				</td>	
+				<td width="2%" align="center" bgcolor="#336633">	
+					<input type="checkbox" name="check" value="check24" class="check_24" border='0'/>
+				</td>				
+				<td width="2%" align="center" bgcolor="#336633">	
+					<input type="checkbox" name="check" value="check25" class="check_25" border='0'/>
+				</td>
+				<td width="2%" align="center" bgcolor="#336633">	
+					<input type="checkbox" name="check" value="check26" class="check_26" border='0'/>
+				</td>
+			</tr>
+	</table>
 
 		</td>
 	</tr>
@@ -762,7 +1189,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				// DG ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 					$select_morp_DG_SMo = $select_morp.$i;
-					print ("<td width='2%' align='center' id='$select_morp_DG_SMo'>");	
+					print ("<td width='2%' align='center' id='$select_morp_DG_SMo' class='check1'>");	
 					
 						$unvetted_DG_SMo = check_unvetted1($id, $hippo_id_property[DG_SMo], $evidencepropertyyperel);						
 						$color = check_color($hippo[DG_SMo], $unvetted_DG_SMo);
@@ -778,7 +1205,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' id='$select_morp1'>");
+					print ("<td width='2%' align='center' id='$select_morp1' class='check2'>");
 						
 						$unvetted_DG_SMi = check_unvetted1($id, $hippo_id_property[DG_SMi], $evidencepropertyyperel);
 						$color = check_color($hippo[DG_SMi], $unvetted_DG_SMi);
@@ -794,7 +1221,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check3'>");
 						
 						$unvetted_DG_SG = check_unvetted1($id, $hippo_id_property[DG_SG], $evidencepropertyyperel);
 						$color = check_color($hippo[DG_SG], $unvetted_DG_SG);
@@ -810,7 +1237,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 					
 
-					print ("<td width='2%' align='center' class='td_border_color1'>");
+					print ("<td width='2%' align='center' class='check4'>");
 						
 						$unvetted_DG_H = check_unvetted1($id, $hippo_id_property[DG_H], $evidencepropertyyperel);
 						$color = check_color($hippo[DG_H], $unvetted_DG_H);
@@ -827,7 +1254,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				// CA3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='td_border_color2'>");
+					print ("<td width='2%' align='center' class='check5'>");
 						
 						$unvetted_CA3_SLM = check_unvetted1($id, $hippo_id_property[CA3_SLM], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SLM], $unvetted_CA3_SLM);
@@ -842,7 +1269,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check6'>");
 						
 						$unvetted_CA3_SR = check_unvetted1($id, $hippo_id_property[CA3_SR], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SR], $unvetted_CA3_SR);
@@ -857,7 +1284,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check7'>");
 						
 						$unvetted_CA3_SL = check_unvetted1($id, $hippo_id_property[CA3_SL], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SL], $unvetted_CA3_SL);
@@ -872,7 +1299,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 					
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check8'>");
 						
 						$unvetted_CA3_SP = check_unvetted1($id, $hippo_id_property[CA3_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SP], $unvetted_CA3_SP);
@@ -887,7 +1314,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");		
 					
 
-					print ("<td width='2%' align='center' class='td_border_color1'>");
+					print ("<td width='2%' align='center' class='check9'>");
 						
 						$unvetted_CA3_SO = check_unvetted1($id, $hippo_id_property[CA3_SO], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SO], $unvetted_CA3_SO);
@@ -904,7 +1331,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				// CA2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='td_border_color2'>");
+					print ("<td width='2%' align='center' class='check10'>");
 						
 						$unvetted_CA2_SLM = check_unvetted1($id, $hippo_id_property[CA2_SLM], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SLM], $unvetted_CA2_SLM);
@@ -918,7 +1345,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					}							
 					print ("</td>");
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check11'>");
 						
 						$unvetted_CA2_SR = check_unvetted1($id, $hippo_id_property[CA2_SR], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SR], $unvetted_CA2_SR);
@@ -933,7 +1360,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 						
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check12'>");
 						
 						$unvetted_CA2_SP = check_unvetted1($id, $hippo_id_property[CA2_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SP], $unvetted_CA2_SP);
@@ -948,7 +1375,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");		
 					
 
-					print ("<td width='2%' align='center' class='td_border_color1'>");
+					print ("<td width='2%' align='center' class='check13'>");
 						
 						$unvetted_CA2_SO = check_unvetted1($id, $hippo_id_property[CA2_SO], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SO], $unvetted_CA2_SO);
@@ -965,7 +1392,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				// CA1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='td_border_color2'>");
+					print ("<td width='2%' align='center' class='check14'>");
 						
 						$unvetted_CA1_SLM = check_unvetted1($id, $hippo_id_property[CA1_SLM], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SLM], $unvetted_CA1_SLM);
@@ -980,7 +1407,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check15'>");
 						
 						$unvetted_CA1_SR = check_unvetted1($id, $hippo_id_property[CA1_SR], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SR], $unvetted_CA1_SR);
@@ -995,7 +1422,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 						
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check16'>");
 						
 						$unvetted_CA1_SP = check_unvetted1($id, $hippo_id_property[CA1_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SP], $unvetted_CA1_SP);
@@ -1010,7 +1437,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");		
 					
 
-					print ("<td width='2%' align='center' class='td_border_color1'>");
+					print ("<td width='2%' align='center' class='check17'>");
 							
 						$unvetted_CA1_SO = check_unvetted1($id, $hippo_id_property[CA1_SO], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SO], $unvetted_CA1_SO);
@@ -1027,7 +1454,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				// SUB ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='td_border_color2'>");
+					print ("<td width='2%' align='center' class='check18'>");
 						
 						$unvetted_SUB_SM = check_unvetted1($id, $hippo_id_property[SUB_SM], $evidencepropertyyperel);
 						$color = check_color($hippo[SUB_SM], $unvetted_SUB_SM);
@@ -1042,7 +1469,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check19'>");
 						
 						$unvetted_SUB_SP = check_unvetted1($id, $hippo_id_property[SUB_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[SUB_SP], $unvetted_SUB_SP);
@@ -1057,7 +1484,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 						
 
-					print ("<td width='2%' align='center' class='td_border_color1'>");
+					print ("<td width='2%' align='center' class='check20'>");
 						
 						$unvetted_SUB_PL = check_unvetted1($id, $hippo_id_property[SUB_PL], $evidencepropertyyperel);	
 						$color = check_color($hippo[SUB_PL], $unvetted_SUB_PL);
@@ -1074,7 +1501,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				// EC ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='td_border_color2'>");
+					print ("<td width='2%' align='center' class='check21'>");
 						
 						$unvetted_EC_I = check_unvetted1($id, $hippo_id_property[EC_I], $evidencepropertyyperel);	
 						$color = check_color($hippo[EC_I], $unvetted_EC_I);
@@ -1089,7 +1516,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check22'>");
 						
 						$unvetted_EC_II = check_unvetted1($id, $hippo_id_property[EC_II], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_II], $unvetted_EC_II);
@@ -1104,7 +1531,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 					
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check23'>");
 						
 						$unvetted_EC_III = check_unvetted1($id, $hippo_id_property[EC_III], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_III], $unvetted_EC_III);
@@ -1119,7 +1546,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check24'>");
 						
 						$unvetted_EC_IV = check_unvetted1($id, $hippo_id_property[EC_IV], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_IV], $unvetted_EC_IV);
@@ -1134,7 +1561,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check25'>");
 						
 						$unvetted_EC_V = check_unvetted1($id, $hippo_id_property[EC_V], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_V], $unvetted_EC_V);
@@ -1149,7 +1576,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					print ("</td>");
 					
 
-					print ("<td width='2%' align='center'>");
+					print ("<td width='2%' align='center' class='check26'>");
 						
 						$unvetted_EC_VI = check_unvetted1($id, $hippo_id_property[EC_VI], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_VI], $unvetted_EC_VI);

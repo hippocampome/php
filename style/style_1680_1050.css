@@ -404,6 +404,46 @@ width:1450px;
 	border-right-width:medium;
 }
 
+.check4 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:#FF0000;
+	border-right-width:medium;
+}
+
+.check9 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:#FF0000;
+	border-right-width:medium;
+}
+
+.check13 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:#FF0000;
+	border-right-width:medium;
+}
+
+.check17 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:#FF0000;
+	border-right-width:medium;
+}
+
+.check20 {
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-right-color:#FF0000;
+	border-right-width:medium;
+}
+
 /* Change with resolution ------------------------------------------------------------- */	
 .td_border_color2 {
 	color:#000099;
@@ -412,6 +452,47 @@ width:1450px;
 	border-left-color:#FF0000;
 	border-left-width:medium;
 }
+
+.check5{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:#FF0000;
+	border-left-width:medium;
+}
+
+.check10{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:#FF0000;
+	border-left-width:medium;
+}
+
+.check14{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:#FF0000;
+	border-left-width:medium;
+}
+
+.check18{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:#FF0000;
+	border-left-width:medium;
+}
+
+.check21{
+	color:#000099;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	border-left-color:#FF0000;
+	border-left-width:medium;
+}
+
 
 /* Change with resolution ------------------------------------------------------------- */	
 .version {
@@ -620,4 +701,8 @@ width:1450px;
 .font22 {
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:12px;
+}
+
+#for_ie{
+	width:26.3%;	
 }
