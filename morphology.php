@@ -35,6 +35,7 @@ function check_color($variable, $unvetted)
 			$link[0] = "<img src='images/morphology/axons_present.png' border='0'/>";
 		
 		$link[1] = $variable;
+	
 	}
 	if ($variable == 'blue')
 	{
@@ -133,377 +134,74 @@ $hippo_select = $_SESSION['hippo_select'];
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script language="javascript">
-
-function ctr(select_nick_name2, color, select_nick_name_check)
-{
-	if (document.getElementById(select_nick_name_check).checked == false)
-	{	
-		document.getElementById(select_nick_name2).bgColor = "#FFFFFF";
-		
-	}
-	else if (document.getElementById(select_nick_name_check).checked == true)
-		document.getElementById(select_nick_name2).bgColor = "#EBF283";	
-}
-
-
-
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <?php include ("function/icon.html"); ?>
 <title>Morphology Matrix</title>
-<script src="jquery-ui-1.10.2.custom/js/jquery-1.9.1.js"></script>
+<style>
+.highlighted{
+	border: solid 1px Chartreuse !important;
+}
+</style>
 <script type="text/javascript" src="style/resolution.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="DataTables-1.9.4/media/js/jquery.js" type="text/javascript"></script>
+<script src="DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/media/css/demo_table_jui.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css"/>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	var he;
+	var oTable=$('#morpho_tab').dataTable({
+			"sScrollY": 700,
+			"sScrollX":"100%",
+			"bScrollCollapse": true,
+			"bAutoWidth":false,
+			"bJQueryUI":true,
+			"aaSorting": [],
+			"bFilter": false,
+			 "bPaginate": false,
+			"iDisplayLength":125,
+			"bDestroy": true,
+			"bSortClasses": false,
+	});
 
-<script>
-$(function(){
-	$('.check_1').click(function () {
+	oTable.$('td').hover( function() {
+        var iCol = $('td', this.parentNode).index(this) % 27;
+        $('td:nth-child('+(iCol+1)+')', oTable.$('tr')).addClass( 'highlighted' );
+    }, function() {
+        oTable.$('td.highlighted').removeClass('highlighted');
+    });	
 
-		if (this.checked)
-		{
-			$(".check1").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check1").css({"backgroundColor": ''});
-		}
-	  });
+	oTable.$('tr').mouseover( function() {
+		$(this).find("td").each(function(){ 
+			$(this).addClass("highlighted");
 
-	$('.check_2').click(function () {
-
-		if (this.checked)
-		{
-			$(".check2").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check2").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_3').click(function () {
-
-		if (this.checked)
-		{
-			$(".check3").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check3").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_4').click(function () {
-
-		if (this.checked)
-		{
-			$(".check4").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check4").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_5').click(function () {
-
-		if (this.checked)
-		{
-			$(".check5").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check5").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_6').click(function () {
-
-		if (this.checked)
-		{
-			$(".check6").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check6").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_7').click(function () {
-
-		if (this.checked)
-		{
-			$(".check7").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check7").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_8').click(function () {
-
-		if (this.checked)
-		{
-			$(".check8").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check8").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_9').click(function () {
-
-		if (this.checked)
-		{
-			$(".check9").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check9").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_10').click(function () {
-
-		if (this.checked)
-		{
-			$(".check10").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check10").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_11').click(function () {
-
-		if (this.checked)
-		{
-			$(".check11").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check11").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_12').click(function () {
-
-		if (this.checked)
-		{
-			$(".check12").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check12").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_13').click(function () {
-
-		if (this.checked)
-		{
-			$(".check13").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check13").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_14').click(function () {
-
-		if (this.checked)
-		{
-			$(".check14").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check14").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_15').click(function () {
-
-		if (this.checked)
-		{
-			$(".check15").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check15").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_16').click(function () {
-
-		if (this.checked)
-		{
-			$(".check16").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check16").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_17').click(function () {
-
-		if (this.checked)
-		{
-			$(".check17").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check17").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_18').click(function () {
-
-		if (this.checked)
-		{
-			$(".check18").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check18").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_19').click(function () {
-
-		if (this.checked)
-		{
-			$(".check19").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check19").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_20').click(function () {
-
-		if (this.checked)
-		{
-			$(".check20").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check20").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_21').click(function () {
-
-		if (this.checked)
-		{
-			$(".check21").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check21").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_22').click(function () {
-
-		if (this.checked)
-		{
-			$(".check22").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check22").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_23').click(function () {
-
-		if (this.checked)
-		{
-			$(".check23").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check23").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_24').click(function () {
-
-		if (this.checked)
-		{
-			$(".check24").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check24").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_25').click(function () {
-
-		if (this.checked)
-		{
-			$(".check25").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check25").css({"backgroundColor": ''});
-		}
-	  });
-
-	$('.check_26').click(function () {
-
-		if (this.checked)
-		{
-			$(".check26").css({"backgroundColor": '#EBF283'});
-		}
-		
-		if (!this.checked)
-		{
-			$(".check26").css({"backgroundColor": ''});
-		}
-	  });
+			});
+		});
+	oTable.$('tr').mouseout(function(){
+			$(this).find("td").each(function(){ 
+				$(this).removeClass("highlighted");
+			});
+		});
 });
-
 </script>
+<style>
+div.table_position div#morpho_tab_wrapper.dataTables_wrapper div.fg-toolbar
+{
+width: 1012px; 
+height: 0px; 
+padding: 0px; 
+border-top-width: 0px; 
+border-right-width: 0px; 
+border-bottom-width: 0px;
+}
+</style>
 </head>
 
 <body>
 
 <!-- COPY IN ALL PAGES -->
 <?php include ("function/title.php"); ?>
-
 	<div id="menu_main_button_new">
 	<?php
 		if ($research);	
@@ -584,222 +282,128 @@ $(function(){
 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<font class='font5'>Pale versions of the colors in the matrix indicate interpretations of neuronal property information that have not yet been fully verified.</font>
 		<br />
-		
-<table border="0" cellspacing="0" cellpadding="0" class="tabellauno">
-	<tr>
- 		<td>
-		  		<table border="0" cellspacing="1" cellpadding="0" class='table_10'>
+		</td>
+		</tr></table>
+
+		  		<table border="0" cellspacing="1" cellpadding="0" class='table_11'>
 				  <tr>
-					<td width="26.5%" align="center">
+					<td width="24.7%" align="center">
 					</td>
-					<td width="8%" align="center" bgcolor="#770000">
-						<font class='font_table_index2'>DG</font>
+					<td width="7.85%" align="center" bgcolor="#770000">
+						<font class='font_table_index2'>DG(18)</font>
 					</td>
-					<td width="10%" align="center" bgcolor="#C08181">
-						<font class='font_table_index2'>CA3</font>
+					<td width="9%" align="center" bgcolor="#C08181">
+						<font class='font_table_index2'>CA3(25)</font>
 					</td>
-					<td width="8%" align="center" bgcolor="#FFFF99">
-						<font class='font_table_index'>CA2</font>
+					<td width="7%" align="center" bgcolor="#FFFF99">
+						<font class='font_table_index'>CA2(5)</font>
 					</td>
 					<td width="8%" align="center" bgcolor="#FF6103">
-						<font class='font_table_index'>CA1</font>
+						<font class='font_table_index'>CA1(40)</font>
 					</td>
 					<td width="6%" align="center" bgcolor="#FFCC33">
-						<font class='font_table_index'>SUB</font>
+						<font class='font_table_index'>SUB(3)</font>
 					</td>
 					<td width="12%" align="center" bgcolor="#336633">
-						<font class='font_table_index2'>EC</font>			
+						<font class='font_table_index2'>EC(31)</font>			
 					</td>					
 				  </tr>
 				</table>
-		</td>
-	</tr>
-
-	<tr>
-		<td>		
-			<table border="1" cellspacing="0" cellpadding="0" class='table_11'>
-			  <tr height="50px">
-				<td align="center" colspan="3" rowspan="2" id="for_ie">	
+				
+			<table border="1" cellspacing="0" cellpadding="0" class='table_11' id="morpho_tab">
+			  <thead>
+			  <tr height="40px">
+				<th width="26.5%" align="center" style="border:0;">	
 					<font class='font1'>Neuron Type</font>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SMo.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SMi.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SG.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/H.png" width="10px" border='0'/>
-				</td>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="verticalText">SMo</div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="verticalText">SMi</div>
+				</th>				
+				<th width="2%" align="center">	
+					<div class="verticalText">SG</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">H</div>
+				</th>
 				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SLM.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SR.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SL.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/SO.png" width="10px" border='0'/>
-				</td>			
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText"><font style="font-size:11px;">SLM</font></div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="verticalText">SR</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SL</div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>			
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">SO</div>
+				</th>			
 				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SLM.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SR.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/SO.png" width="10px" border='0'/>
-				</td>			
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText"><font style="font-size:11px;">SLM</font></div>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="verticalText">SR</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">SO</div>
+				</th>			
 				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SLM.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SR.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/SO.png" width="10px" border='0'/>
-				</td>			
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText"><font style="font-size:11px;">SLM</font></div>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="verticalText">SR</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">SO</div>
+				</th>			
 	
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SM.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/PL.png" width="10px" border='0'/>
-				</td>	
-				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/I.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/II.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" >	
-					<img src="images/name/III.png" width="10px" border='0'/>
-				</td>	
-				<td width="2%" align="center" >	
-					<img src="images/name/IV.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/V.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" >	
-					<img src="images/name/VI.png" width="10px" border='0'/>
-				</td>
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText">SM</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">PL</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText">I</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">II</div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="verticalText">III</div>
+				</th>	
+				<th width="2%" align="center" >	
+					<div class="verticalText">IV</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">V</div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="verticalText">VI</div>
+				</th>
 			  </tr>
-<tr>
-<td width="2%" align="center" bgcolor='#770000'>	
-	<input type="checkbox" name="check" value="check1" class="check_1" border='0'/>
-				</td>			
-				<td width="2%" align="center" bgcolor='#770000'>	
-				<input type="checkbox" name="check" value="check2" width="10px" class="check_2" border='0'/>
-				</td>				
-				<td width="2%" align="center" bgcolor='#770000'>	
-					<input type="checkbox" name="check" value="check3" class="check_3" border='0'/>
-				</td>
-				<td width="2%" align="center" bgcolor='#770000' class='td_border_color1'>	
-					<input type="checkbox" name="check" value="check4" class="check_4" border='0'/>
-				</td>
-				
-				<td width="2%" align="center" bgcolor='#C08181' class='td_border_color2'>	
-					<input type="checkbox" name="check" value="check5" class="check_5" border='0'/>
-				</td>			
-				<td width="2%" align="center" bgcolor='#C08181'>	
-					<input type="checkbox" name="check" value="check6" class="check_6" border='0'/>
-				</td>				
-				<td width="2%" align="center" bgcolor='#C08181'>	
-					<input type="checkbox" name="check" value="check7" class="check_7" border='0'/>
-				</td>
-				<td width="2%" align="center" bgcolor='#C08181' >	
-					<input type="checkbox" name="check" value="check8" class="check_8" border='0'/>
-				</td>			
-				<td width="2%" align="center" bgcolor='#C08181' class='td_border_color1'>	
-					<input type="checkbox" name="check" value="check9" class="check_9" border='0'/>
-				</td>			
-				
-				<td width="2%" align="center" bgcolor="#FFFF99" class='td_border_color2'>	
-					<input type="checkbox" name="check" value="check10" class="check_10" border='0'/>
-				</td>			
-				<td width="2%" align="center" bgcolor="#FFFF99">	
-					<input type="checkbox" name="check" value="check11" class="check_11" border='0'/>
-				</td>				
-				<td width="2%" align="center" bgcolor="#FFFF99">	
-					<input type="checkbox" name="check" value="check12" class="check_12" border='0'/>
-				</td>
-				<td width="2%" align="center" bgcolor="#FFFF99" class='td_border_color1'>	
-					<input type="checkbox" name="check" value="check13" class="check_13" border='0'/>
-				</td>			
-				
-				<td width="2%" align="center" bgcolor="#FF6103" class='td_border_color2'>	
-					<input type="checkbox" name="check" value="check14" class="check_14" border='0'/>
-				</td>			
-				<td width="2%" align="center" bgcolor="#FF6103">	
-					<input type="checkbox" name="check" value="check15" class="check_15" border='0'/>
-				</td>				
-				<td width="2%" align="center" bgcolor="#FF6103">	
-					<input type="checkbox" name="check" value="check16" class="check_16" border='0'/>
-				</td>
-				<td width="2%" align="center" bgcolor="#FF6103" class='td_border_color1'>	
-					<input type="checkbox" name="check" value="check17" class="check_17" border='0'/>
-				</td>			
-	
-				<td width="2%" align="center" bgcolor="#FFCC33" class='td_border_color2'>	
-					<input type="checkbox" name="check" value="check18" class="check_18" border='0'/>
-				</td>				
-				<td width="2%" align="center" bgcolor="#FFCC33">	
-					<input type="checkbox" name="check" value="check19" class="check_19" border='0'/>
-				</td>
-				<td width="2%" align="center" bgcolor="#FFCC33" class='td_border_color1'>	
-					<input type="checkbox" name="check" value="check20" class="check_20" border='0'/>
-				</td>	
-				
-				<td width="2%" align="center" bgcolor="#336633" class='td_border_color2'>	
-					<input type="checkbox" name="check" value="check21" class="check_21" border='0'/>
-				</td>				
-				<td width="2%" align="center" bgcolor="#336633">	
-					<input type="checkbox" name="check" value="check22" class="check_22" border='0'/>
-				</td>
-				<td width="2%" align="center" bgcolor="#336633">	
-					<input type="checkbox" name="check" value="check23" class="check_23" border='0'/>
-				</td>	
-				<td width="2%" align="center" bgcolor="#336633">	
-					<input type="checkbox" name="check" value="check24" class="check_24" border='0'/>
-				</td>				
-				<td width="2%" align="center" bgcolor="#336633">	
-					<input type="checkbox" name="check" value="check25" class="check_25" border='0'/>
-				</td>
-				<td width="2%" align="center" bgcolor="#336633">	
-					<input type="checkbox" name="check" value="check26" class="check_26" border='0'/>
-				</td>
-			</tr>
-	</table>
-
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-		<div class="divinterno">
-		
+			  </thead>
+			  <tbody>
+			  
+			
+		 <div class="divinterno">
 		
 		<form name="nomeform">
 		
@@ -885,7 +489,8 @@ $(function(){
 		// ------------------------------------------------------------------------------------------------------------------
 
 
-		print ("<table border='1' cellspacing='0' cellpadding='0' class='tabelladue'>");
+		//print ("<table border='1' cellspacing='0' cellpadding='0' class='tabelladue'>");
+		//print("<tbody>");
 		// Retrive the NICKNAME in table TYPE 		
 		for ($i=0; $i<$number_type; $i++) //$number_type
 		{
@@ -1059,121 +664,188 @@ $(function(){
 			$hippo[EC_V]=check_axon_dendrite('EC_V',$hippo_axon, $hippo_dendrite);
 			$hippo[EC_VI]=check_axon_dendrite('EC_VI',$hippo_axon, $hippo_dendrite);
 
-			if (!$research)
-			{		
-				if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601))    		
-				{										
-					print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
-				}
-			}
-			else
-			{
-				if ( ($id == $first_CA3) || ($id == $first_CA2) || ($id == $first_CA1) || ($id == $first_SUB) || ($id == $first_EC))
-				{
-				 	print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
-				}
-			}
+			//if (!$research)
+			//{		
+				//if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601))    		
+				//{										
+					/*print("<tr height='4px'><td style='border:0;'></td></tr>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td bgcolor='#FF0000'></td></tr>");*/
+				//}
+			//}
+			//else
+			//{
+//				if ( ($id == $first_CA3) || ($id == $first_CA2) || ($id == $first_CA1) || ($id == $first_SUB) || ($id == $first_EC))
+	//			{
+				 	/*print("<tr height='4px'><td style='border:0;'></td></tr>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td bgcolor='#FF0000'></td></tr>");*/
+		//		}
+		//	}
 
 				$select_nick_name2 = str_replace(':', '_', $nickname);
 				$select_nick_name_check  = $select_nick_name2."_check";
 				
-				print ("<tr id='$select_nick_name2'>");
+				print("<tr id='$select_nick_name2'>");
 
-				if ($position < 200)
-				{
-					$bkcolor='#770000';
-				}
-				else if ($position < 300)
-				{
-					$bkcolor='#C08181';
-				}
-				else if ($position < 400)
-				{
-					$bkcolor='#FFFF99';
-				}	
-				else if ($position < 500)
-				{
-					$bkcolor='#FF6103';
-				}	
-				else if ($position < 600)
-				{
-					$bkcolor='#FFCC33';
-				}				
-				else if ($position < 700)
-				{
-					$bkcolor='#336633';
+ 				if ($position < 200)
+ 				{
+ 					$bkcolor='#770000';
+ 				}
+ 				else if ($position < 300)
+ 				{
+ 					$bkcolor='#C08181';
+ 				}
+ 				else if ($position < 400)
+ 				{
+ 					$bkcolor='#FFFF99';
+ 				}	
+ 				else if ($position < 500)
+ 				{
+ 					$bkcolor='#FF6103';
+ 				}	
+ 				else if ($position < 600)
+ 				{
+ 					$bkcolor='#FFCC33';
+ 				}				
+ 				else if ($position < 700)
+ 				{
+ 					$bkcolor='#336633';
 				}											
-				else
-				{
-					$bkcolor='#FFFFFF';	
+ 				else
+ 				{
+ 					$bkcolor='#FFFFFF';	
 				}
 
-				print ("<td width='3%' align='center' class='cella_1'>");
+				//print ("<td align='center' class='cella_1' style='width:0px; border:0;'>");
 		
-				if ($research) 
-				{
-					if ($id == $first_DG)
-							print ("<font class='font2' color='#770000'><strong>DG</strong></font> ");
+				//if ($research) 
+				//{
+					//if ($id == $first_DG)
+					//		print ("<font class='font2' color='#770000'><strong>DG</strong></font> ");
 //					if ($id == $DG_position[1])
 //						print ("<font class='font2' color='#770000'>($n_DG)</font> ");									
-					if ($id == $first_CA3)
-						print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");
+					//if ($id == $first_CA3)
+						//print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");
 //					if ($id == $CA3_position[1])
 //						print ("<font class='font2' color='#770000'>($n_CA3)</font> ");													
-					if ($id == $first_CA2)
-						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");
+					//if ($id == $first_CA2)
+						//print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");
 //					if ($id == $CA2_position[1])
 //						print ("<font class='font2' color='#770000'>($n_CA2)</font> ");											
-					if ($id == $first_CA1)
-						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");
+					//if ($id == $first_CA1)
+						//print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");
 //					if ($id == $CA1_position[1])
 //						print ("<font class='font2' color='#770000'>($n_CA1)</font> ");													
-					if ($id == $first_SUB)
-						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");
+					//if ($id == $first_SUB)
+						//print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");
 //					if ($id == $SUB_position[1])
 //						print ("<font class='font2' color='#770000'>($n_SUB)</font> ");											
-					if ($id == $first_EC)
-						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");
+					//if ($id == $first_EC)
+						//print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");
 //					if ($id == $EC_position[1])
 //						print ("<font class='font2' color='#770000'>($n_EC)</font> ");															
-				}
-				else
-				{
-					if ($position == 101)
-						print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");				
-					if ($position == 102)
-						print ("<font class='font2' color='#770000'> (18) </font> ");				
-					if ($position == 201)
-						print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");		
-					if ($position == 202)
-						print ("<font class='font2' color='#C08181'> (25) </font> ");				
-					if ($position == 301)
-						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");			
-					if ($position == 302)
-						print ("<font class='font2' color='#FFCC00'> (5) </font> ");				
-					if ($position == 401)
-						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");		
-					if ($position == 402)
-						print ("<font class='font2' color='#FF6103'> (40) </font> ");				
-					if ($position == 501)
-						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");				
-					if ($position == 502)
-						print ("<font class='font2' color='#FFCC33'> (3) </font> ");				
-					if ($position == 601)
-						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");	
-					if ($position == 602)
-						print ("<font class='font2' color='#336633'> (31) </font> ");				
-				}	
+				//}
+// 				else
+// 				{
+// 					if ($position == 101)
+// 						print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");				
+// 					if ($position == 102)
+// 						print ("<font class='font2' color='#770000'> (18) </font> ");				
+// 					if ($position == 201)
+// 						print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");		
+// 					if ($position == 202)
+// 						print ("<font class='font2' color='#C08181'> (25) </font> ");				
+// 					if ($position == 301)
+// 						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");			
+// 					if ($position == 302)
+// 						print ("<font class='font2' color='#FFCC00'> (5) </font> ");				
+// 					if ($position == 401)
+// 						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");		
+// 					if ($position == 402)
+// 						print ("<font class='font2' color='#FF6103'> (40) </font> ");				
+// 					if ($position == 501)
+// 						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");				
+// 					if ($position == 502)
+// 						print ("<font class='font2' color='#FFCC33'> (3) </font> ");				
+// 					if ($position == 601)
+// 						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");	
+// 					if ($position == 602)
+// 						print ("<font class='font2' color='#336633'> (31) </font> ");				
+// 				}	
 					
 					
-				print ("</td>");
+				//print ("</td>");
+				//print ("<td align='center' style='border:0; width:0px;'>");
+// 				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
+				//print ("</td>");
 
-				print ("<td width='3%' align='center'  bgcolor='$bkcolor'>");
-				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
-				print ("</td>");
 
-
-				print ("<td width='20%' align='right'>");
+				print ("<td width='26.5%' align='center'>");
 			
 					print ("<a href='neuron_page.php?id=$id' target='_blank' class='font_cell'>");
 					
@@ -1189,7 +861,7 @@ $(function(){
 				// DG ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 					$select_morp_DG_SMo = $select_morp.$i;
-					print ("<td width='2%' align='center' id='$select_morp_DG_SMo' class='check1'>");	
+					print ("<td width='2%' align='center' id='$select_morp_DG_SMo'>");	
 					
 						$unvetted_DG_SMo = check_unvetted1($id, $hippo_id_property[DG_SMo], $evidencepropertyyperel);						
 						$color = check_color($hippo[DG_SMo], $unvetted_DG_SMo);
@@ -1205,7 +877,7 @@ $(function(){
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' id='$select_morp1' class='check2'>");
+					print ("<td width='2%' align='center' id='$select_morp1'>");
 						
 						$unvetted_DG_SMi = check_unvetted1($id, $hippo_id_property[DG_SMi], $evidencepropertyyperel);
 						$color = check_color($hippo[DG_SMi], $unvetted_DG_SMi);
@@ -1221,7 +893,7 @@ $(function(){
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' class='check3'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_DG_SG = check_unvetted1($id, $hippo_id_property[DG_SG], $evidencepropertyyperel);
 						$color = check_color($hippo[DG_SG], $unvetted_DG_SG);
@@ -1237,7 +909,7 @@ $(function(){
 					print ("</td>");
 					
 
-					print ("<td width='2%' align='center' class='check4'>");
+					print ("<td width='2%' align='center' class='td_border_color1'>");
 						
 						$unvetted_DG_H = check_unvetted1($id, $hippo_id_property[DG_H], $evidencepropertyyperel);
 						$color = check_color($hippo[DG_H], $unvetted_DG_H);
@@ -1254,7 +926,7 @@ $(function(){
 				
 				// CA3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='check5'>");
+					print ("<td width='2%' align='center' class='td_border_color2'>");
 						
 						$unvetted_CA3_SLM = check_unvetted1($id, $hippo_id_property[CA3_SLM], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SLM], $unvetted_CA3_SLM);
@@ -1269,7 +941,7 @@ $(function(){
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' class='check6'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_CA3_SR = check_unvetted1($id, $hippo_id_property[CA3_SR], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SR], $unvetted_CA3_SR);
@@ -1284,7 +956,7 @@ $(function(){
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' class='check7'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_CA3_SL = check_unvetted1($id, $hippo_id_property[CA3_SL], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SL], $unvetted_CA3_SL);
@@ -1299,7 +971,7 @@ $(function(){
 					print ("</td>");
 					
 
-					print ("<td width='2%' align='center' class='check8'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_CA3_SP = check_unvetted1($id, $hippo_id_property[CA3_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SP], $unvetted_CA3_SP);
@@ -1314,7 +986,7 @@ $(function(){
 					print ("</td>");		
 					
 
-					print ("<td width='2%' align='center' class='check9'>");
+					print ("<td width='2%' align='center' class='td_border_color1'>");
 						
 						$unvetted_CA3_SO = check_unvetted1($id, $hippo_id_property[CA3_SO], $evidencepropertyyperel);
 						$color = check_color($hippo[CA3_SO], $unvetted_CA3_SO);
@@ -1331,7 +1003,7 @@ $(function(){
 				
 				// CA2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='check10'>");
+					print ("<td width='2%' align='center' class='td_border_color2'>");
 						
 						$unvetted_CA2_SLM = check_unvetted1($id, $hippo_id_property[CA2_SLM], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SLM], $unvetted_CA2_SLM);
@@ -1345,7 +1017,7 @@ $(function(){
 					}							
 					print ("</td>");
 
-					print ("<td width='2%' align='center' class='check11'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_CA2_SR = check_unvetted1($id, $hippo_id_property[CA2_SR], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SR], $unvetted_CA2_SR);
@@ -1360,7 +1032,7 @@ $(function(){
 					print ("</td>");
 						
 
-					print ("<td width='2%' align='center' class='check12'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_CA2_SP = check_unvetted1($id, $hippo_id_property[CA2_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SP], $unvetted_CA2_SP);
@@ -1375,7 +1047,7 @@ $(function(){
 					print ("</td>");		
 					
 
-					print ("<td width='2%' align='center' class='check13'>");
+					print ("<td width='2%' align='center' class='td_border_color1'>");
 						
 						$unvetted_CA2_SO = check_unvetted1($id, $hippo_id_property[CA2_SO], $evidencepropertyyperel);
 						$color = check_color($hippo[CA2_SO], $unvetted_CA2_SO);
@@ -1392,7 +1064,7 @@ $(function(){
 				
 				// CA1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='check14'>");
+					print ("<td width='2%' align='center' class='td_border_color2'>");
 						
 						$unvetted_CA1_SLM = check_unvetted1($id, $hippo_id_property[CA1_SLM], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SLM], $unvetted_CA1_SLM);
@@ -1407,7 +1079,7 @@ $(function(){
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' class='check15'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_CA1_SR = check_unvetted1($id, $hippo_id_property[CA1_SR], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SR], $unvetted_CA1_SR);
@@ -1422,7 +1094,7 @@ $(function(){
 					print ("</td>");
 						
 
-					print ("<td width='2%' align='center' class='check16'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_CA1_SP = check_unvetted1($id, $hippo_id_property[CA1_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SP], $unvetted_CA1_SP);
@@ -1437,7 +1109,7 @@ $(function(){
 					print ("</td>");		
 					
 
-					print ("<td width='2%' align='center' class='check17'>");
+					print ("<td width='2%' align='center' class='td_border_color1'>");
 							
 						$unvetted_CA1_SO = check_unvetted1($id, $hippo_id_property[CA1_SO], $evidencepropertyyperel);
 						$color = check_color($hippo[CA1_SO], $unvetted_CA1_SO);
@@ -1454,7 +1126,7 @@ $(function(){
 				
 				// SUB ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='check18'>");
+					print ("<td width='2%' align='center' class='td_border_color2'>");
 						
 						$unvetted_SUB_SM = check_unvetted1($id, $hippo_id_property[SUB_SM], $evidencepropertyyperel);
 						$color = check_color($hippo[SUB_SM], $unvetted_SUB_SM);
@@ -1469,7 +1141,7 @@ $(function(){
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' class='check19'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_SUB_SP = check_unvetted1($id, $hippo_id_property[SUB_SP], $evidencepropertyyperel);
 						$color = check_color($hippo[SUB_SP], $unvetted_SUB_SP);
@@ -1484,7 +1156,7 @@ $(function(){
 					print ("</td>");
 						
 
-					print ("<td width='2%' align='center' class='check20'>");
+					print ("<td width='2%' align='center' class='td_border_color1'>");
 						
 						$unvetted_SUB_PL = check_unvetted1($id, $hippo_id_property[SUB_PL], $evidencepropertyyperel);	
 						$color = check_color($hippo[SUB_PL], $unvetted_SUB_PL);
@@ -1501,7 +1173,7 @@ $(function(){
 				
 				// EC ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-					print ("<td width='2%' align='center' class='check21'>");
+					print ("<td width='2%' align='center' class='td_border_color2'>");
 						
 						$unvetted_EC_I = check_unvetted1($id, $hippo_id_property[EC_I], $evidencepropertyyperel);	
 						$color = check_color($hippo[EC_I], $unvetted_EC_I);
@@ -1515,8 +1187,7 @@ $(function(){
 					}			
 					print ("</td>");
 
-
-					print ("<td width='2%' align='center' class='check22'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_EC_II = check_unvetted1($id, $hippo_id_property[EC_II], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_II], $unvetted_EC_II);
@@ -1530,8 +1201,7 @@ $(function(){
 					}	
 					print ("</td>");
 					
-
-					print ("<td width='2%' align='center' class='check23'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_EC_III = check_unvetted1($id, $hippo_id_property[EC_III], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_III], $unvetted_EC_III);
@@ -1545,8 +1215,7 @@ $(function(){
 					}			
 					print ("</td>");
 
-
-					print ("<td width='2%' align='center' class='check24'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_EC_IV = check_unvetted1($id, $hippo_id_property[EC_IV], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_IV], $unvetted_EC_IV);
@@ -1561,7 +1230,7 @@ $(function(){
 					print ("</td>");
 
 
-					print ("<td width='2%' align='center' class='check25'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_EC_V = check_unvetted1($id, $hippo_id_property[EC_V], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_V], $unvetted_EC_V);
@@ -1576,7 +1245,7 @@ $(function(){
 					print ("</td>");
 					
 
-					print ("<td width='2%' align='center' class='check26'>");
+					print ("<td width='2%' align='center'>");
 						
 						$unvetted_EC_VI = check_unvetted1($id, $hippo_id_property[EC_VI], $evidencepropertyyperel);
 						$color = check_color($hippo[EC_VI], $unvetted_EC_VI);
@@ -1593,23 +1262,12 @@ $(function(){
 				print ("</tr>");
 		}
 		
-		print ("</table>");
+		//print ("</tbody></table><div id='pager'></div>");
 		?>
 		
 		</form>
-		
-		
-		
 		</div>
-		</td>
-	</tr>
-
-	</table>		
-		
-		
-	</td>
-  </tr>
-</table>
-</div>
+		</tbody></table><div id='pager'></div>
+		</div>
 </body>
 </html>

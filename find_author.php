@@ -305,6 +305,15 @@ $(document).ready(function(){
 		});
 });
 </script>
+<style>
+#tab_res_wrapper{
+	top: 288px; 
+	left: 60px; 
+	width: 1155px; 
+	right: 129px; 
+	bottom: -331px;
+}
+</style>
 </head>
 
 <body>
@@ -645,7 +654,7 @@ $(document).ready(function(){
 						<td align='left' width='5%' class='table_neuron_page4'>$link2 <font class='font13'>$pmid[$i]</font> </a></td>");		
 				print("<td align='left' width='20%' class='table_neuron_page4'>");
 				
-$a="SELECT `Article`.`id` AS `Article_id`, `pmid_isbn`, `Type`.* FROM `Article` INNER JOIN `ArticleSynonymRel` ON (`ArticleSynonymRel`.`Article_id` = `Article`.`id`) INNER JOIN `Synonym` ON (`Synonym`.`id` = `ArticleSynonymRel`.`Synonym_id`) INNER JOIN `SynonymTypeRel` ON (`SynonymTypeRel`.`Synonym_id` = `Synonym`.`id`) INNER JOIN `Type` ON (`Type`.`id` = `SynonymTypeRel`.`Type_id`) WHERE (`pmid_isbn` = '$pmid[$i]')";
+				$a="SELECT `Article`.`id` AS `Article_id`, `pmid_isbn`, `Type`.* FROM `Article` INNER JOIN `ArticleSynonymRel` ON (`ArticleSynonymRel`.`Article_id` = `Article`.`id`) INNER JOIN `Synonym` ON (`Synonym`.`id` = `ArticleSynonymRel`.`Synonym_id`) INNER JOIN `SynonymTypeRel` ON (`SynonymTypeRel`.`Synonym_id` = `Synonym`.`id`) INNER JOIN `Type` ON (`Type`.`id` = `SynonymTypeRel`.`Type_id`) WHERE (`pmid_isbn` = '$pmid[$i]')";
 				$Type_name = mysql_query($a);
 				if (!$Type_name) {
 					die("<p>Error in listing tables:" . mysql_error() . "</p>");
@@ -686,8 +695,6 @@ $a="SELECT `Article`.`id` AS `Article_id`, `pmid_isbn`, `Type`.* FROM `Article` 
 					{
 						print("$o)$ty_name <br/>");
 					}
-			
-			
 			
 			$t_n[$f]=$ty_name;
 			$o=$o+1;

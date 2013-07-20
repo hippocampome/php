@@ -31,15 +31,16 @@ else
 	 //document.write("<![if !IE]><link rel='stylesheet' type='text/css' href='style/style.css'/><![endif]>");
 
 	 	if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
-		 document.write("<link rel='stylesheet' type='text/css' href='style/style_firefox.css'/>");
+		 document.write("<link rel='stylesheet' type='text/css' href='style/style.css'/>");
 		}
 
 	 	else if (navigator.userAgent.toLowerCase().indexOf("chrome") > -1) {
 			document.write("<link rel='stylesheet' type='text/css' href='style/style.css'/>");
 		}
+	 	
 	 	else if(navigator.userAgent.indexOf("Opera") > 0 ) 
 		{
-			document.write("<link rel='stylesheet' type='text/css' href='style/style_opera.css'/>");	
+			document.write("<link rel='stylesheet' type='text/css' href='style/style.css'/>");	
 		}
 	 	
 	 	else if (navigator.userAgent.indexOf("MSIE") > 0 )
@@ -48,7 +49,7 @@ else
 	 	}
 		else
 		{
-			 document.write("<link href='style/style_opera.css' rel='stylesheet' type='text/css'/>");
+			 document.write("<link href='style/style.css' rel='stylesheet' type='text/css'/>");
 		}
 
 }
