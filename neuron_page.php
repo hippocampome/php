@@ -32,67 +32,78 @@ function show_ephys($var)
 	{	
 		$name_show = 'V<small><sub>rest</small></sub>';
 		$flag = 2;
-		$units='mV';
+		$units = 'mV';
+		$num_decimals = 1;
 	}
 	if($var == 'Rin')
 	{	
 		$name_show = 'R<small><sub>in</small></sub>';
 		$flag = 2;
-		$units='M&Omega;';
+		$units = 'M&Omega;';
+		$num_decimals = 1;
 	}
 	if($var == 'tm')
 	{	
 		$name_show = '&tau;<small><sub>m</small></sub>';
 		$flag = 1;
-		$units='ms';
+		$units = 'ms';
+		$num_decimals = 1;
 	}
 	if($var == 'Vthresh')
 	{	
 		$name_show = 'V<small><sub>thresh</small></sub>';
 		$flag = 2;
-		$units='mV';
+		$units = 'mV';
+		$num_decimals = 1;
 	}	
 	if($var == 'fast_AHP')
 	{	
     //		$name_show = 'Fast AHP<small><sub>ampl</small></sub>';
 		$name_show = 'Fast AHP';
 		$flag = 2;
-		$units='mV';
+		$units = 'mV';
+		$num_decimals = 1;
 	}	
 	if($var == 'AP_ampl')
 	{	
 		$name_show = 'AP<small><sub>ampl</small></sub>';
 		$flag = 1;
-		$units='mV';
+		$units = 'mV';
+		$num_decimals = 1;
 	}		
 	if($var == 'AP_width')
 	{	
 		$name_show = 'AP<small><sub>width</small></sub>';
 		$flag = 1;
-		$units='ms';
+		$units = 'ms';
+		$num_decimals = 2;
 	}		
 	if($var == 'max_fr')
 	{	
 		$name_show = 'Max F.R.';
 		$flag = 1;
-		$units='Hz';
+		$units = 'Hz';
+		$num_decimals = 1;
 	}		
 	if($var == 'slow_AHP')
 	{	
 		$name_show = 'Slow AHP';
 		$flag = 1;
-		$units='mV';
+		$units = 'mV';
+		$num_decimals = 2;
 	}
 	if($var == 'sag_ratio')
 	{	
 		$name_show = 'Sag ratio';
 		$flag = 1;
-		$units='';
+		$units = '';
+		$num_decimals = 2;
 	}
 
-	$res[0]= $name_show;    //name showed
-	$res[1] =$flag;
-	$res[2] =$units;
+	$res[0] = $name_show;    //name showed
+	$res[1] = $flag;
+	$res[2] = $units;
+	$res[3] = $num_decimals;
 
 	return($res);
 }
@@ -902,6 +913,7 @@ if ($text_file_creation)
 				</tr>	
 				<?php
 				// retrive information for POSITIVE AND WEAK-POSITIVE in property table.
+				$marker_pos_disp_counter = 0;
 				for ($i=0; $i<$n; $i++)
 				{
 					$property -> retrive_by_id($property_id[$i]);
@@ -929,7 +941,9 @@ if ($text_file_creation)
 								</a>	
 								</td>					
 							</tr>							
-						");										
+						");
+	
+						$marker_pos_disp_counter++;									
 					}
 
 					else;
@@ -961,10 +975,20 @@ if ($text_file_creation)
 								</a>
 								</td>					
 							</tr>							
-						");										
+						");
+
+						$marker_pos_disp_counter++;									
 					}
 					else;
-				}								
+				}
+				if ($marker_pos_disp_counter == 0) {
+					print ("
+							<tr>
+							<td width='20%' align='right'></td>
+							<td align='left' width='80%' class='table_neuron_page2'>None known</td>
+							</tr>
+							");
+				}
 				?>
 			</table>	
 	
@@ -979,6 +1003,7 @@ if ($text_file_creation)
 				</tr>	
 				<?php
 				// retrive information for NEGATIVE in property table.
+				$marker_neg_disp_counter = 0;
 				for ($i=0; $i<$n; $i++)
 				{
 					$property -> retrive_by_id($property_id[$i]);
@@ -987,15 +1012,15 @@ if ($text_file_creation)
 					{
 						$part = $property -> getPart();
 						
-					// retrieve UNVETTED:
-					$evidencepropertyyperel -> retrive_unvetted($id, $property_id[$i]);
-					$unvetted = $evidencepropertyyperel -> getUnvetted();
-					
-					if ($unvetted == 1)
-						$font_col = 'font4_unvetted';
-					else
-						$font_col = 'font4';
-												
+						// retrieve UNVETTED:
+						$evidencepropertyyperel -> retrive_unvetted($id, $property_id[$i]);
+						$unvetted = $evidencepropertyyperel -> getUnvetted();
+						
+						if ($unvetted == 1)
+							$font_col = 'font4_unvetted';
+						else
+							$font_col = 'font4';
+													
 						print ("
 							<tr>
 								<td width='20%' align='right'>
@@ -1006,10 +1031,21 @@ if ($text_file_creation)
 								</a>
 								</td>					
 							</tr>							
-						");										
+						");		
+
+						$marker_neg_disp_counter++;								
 					}
 					else;
-				}				
+				}	
+					
+				if ($marker_neg_disp_counter == 0) {
+					print ("
+							<tr>
+							<td width='20%' align='right'></td>
+							<td align='left' width='80%' class='table_neuron_page2'>None known</td>
+							</tr>
+							");
+				}	
 				?>
 				</table>	
 	
@@ -1027,7 +1063,9 @@ if ($text_file_creation)
 
 		<table width="80%" border="0" cellspacing="2" cellpadding="0">
 		<?php		
-      $abbreviations = array();
+      		$abbreviations = array();
+      		
+      		$ephys_disp_counter = 0;
 			for ($i=0; $i<$n; $i++)
 			{
 				$property -> retrive_by_id($property_id[$i]);
@@ -1062,122 +1100,85 @@ if ($text_file_creation)
 
 							$epdata -> retrive_all_information($epdata_id);
 							$value1 = $epdata -> getValue1();
+							if($value1)
+								$value1 = number_format($value1,$res[3]);
 							$value2 = $epdata -> getValue2();
+							if($value2)
+								$value2 = number_format($value2,$res[3]);
 							$error = $epdata -> getError();
 							$n_measurement = $epdata -> getN();
 							$istim =  $epdata -> getIstim();	
 							$time =  $epdata -> getTime();	
-							$std_sem =  $epdata -> getStd_sem();	
-              array_push($abbreviations, $std_sem);  // will read these out at end to print abbreviations
+							$std_sem =  $epdata -> getStd_sem();
+              				array_push($abbreviations, $std_sem);  // will read these out at end to print abbreviations
 							
 							// -------------------------------------------------------------------------------------
 							
-							// BEGIN CLR modifications...
+							// BEGIN DWW Istimul-Tstimul modifications
 								
-								// both value1 and value2: 
-								if ($value1 && $value2 && !$istim)
-								{
-								  if ($res[2] != '')
-    									$meas="[$value1, $value2] $res[2]";
-									else
-									    $meas="[$value1, $value2]";
-								}
-								// no value2, but has value1 and error:
-								if ($value1 && $error && !$istim)
-								{
-									// original code, pre-Vrest minus sign kludge
-									if ($res[2] != '')
-									    $meas="$value1 &plusmn; $error $res[2]";
-									else
-									    $meas="$value1 &plusmn; $error";
+							if ($value2)
+							{
+								$mean_value = ($value1 + $value2) / 2;
+								$range = "[$value1 - $value2]";
+							}
+							else
+							{
+								$mean_value = "$value1";	
+								$range = "";
+							}
 									
-									// start of Vrest minus sign kludge
-									//if ($res[0] == 'V<small><sub>rest</small></sub>')
-									//	$meas=" -$value1 &plusmn; $error $res[2] ";
-									//else
-									//	$meas=" $value1 &plusmn; $error $res[2] ";
-									// end of Vrest minus sign kludge
-								}
-								// no value2, but has value1 and error:
-								if ($value1 && !$value2 && !$error && !$istim)
-								{
-								  if ($res[2] != '')
-										$meas="$value1 $res[2]";
-									else
-									  $meas="$value1";
-								}		
-										
-								// istim field
-								if (($istim) and ($istim != "unknown"))
-								{
-									
-									if ($value2)
-									{
-										$mean_value = ($value1 + $value2) / 2;
-										$range = "[$value1 - $value2]";
-									}
-									else
-									{
-										$mean_value = "$value1";	
-										$range = "";
-									}
-									if ($error)
-										$error_value = "&plusmn; $error";
-									else
-									  $error_value = "";
-									
-									if ($time)
-										$time_val = ", $time ms";	
-									else 
-									  $time_val = "";
-									//if ($res[2])
-										//$res_2_1 = $res[2];
-										
-									//if ($istim)
-										//$istim_show =" $istim";	
-										
-									if ($istim)
-											$istim_show =", $istim pA";  //										$istim_show =", ".$istim;			
-								  else
-									    $istim_show ="";
-				
-									
-									if ($res[2] != '')
-    									$meas="$mean_value $range $error_value $res[2]$istim_show$time_val";
-									else
-									{
-									    if ($error_value=='' && $range == '')
-											    $meas="$mean_value$istim_show$time_val";
-											elseif ($error_value=='')
-    											$meas="$mean_value $range$istim_show$time_val";
-											elseif ($range == '')
-													$meas="$mean_value $error_value$istim_show$time_val";
-									}    		
-								}
+							if ($error)
+							{
+								$error_value = "&plusmn; $error";
 								
-																
-								if ($error)
+								if ($std_sem == 'std')
 								{
-									if ($std_sem == 'std')
-										$std_sem_value = ", Mean &plusmn; SD";
-									else if ($std_sem == 'sem')	
-										$std_sem_value = ", Mean &plusmn; SEM";
-									else
-										$std_sem_value ='';
-										
-									$n_error = 1;	
+									$std_sem_value = ", Mean &plusmn; SD";
+									array_push($abbreviations, $std_sem);
+								}
+								elseif ($std_sem == 'sem')	
+								{
+									$std_sem_value = ", Mean &plusmn; SEM";
+									array_push($abbreviations, $std_sem);
 								}
 								else
 									$std_sem_value ='';
+									
+								$n_error = 1;	
+							}
+							else
+							{
+							  	$error_value = "";
+							  	
+								$std_sem_value = "";
+							}
+							
+							if ($n_measurement)
+								$N = " (n=$n_measurement)";
+							else
+						  		$N = " (n=1)";	
+					
+							if ($istim && ($istim != "unknown"))
+							{
+								$istim_show =", Istimul=$istim pA"; 			
+								array_push($abbreviations, 'istim');
+							}
+						  	else
+							    $istim_show ="";
 								
-								if ($n_measurement)
-									$N = "(n=$n_measurement)";
-								else 	 						// R 2C (n=1)
-								  $N = "(n=1)";	// R 2C (n=1)	
+							if ($time && ($time != "unknown"))
+							{
+								$time_val = ", Tstimul=$time ms";
+								array_push($abbreviations, 'time');
+							}
+							else 
+							  $time_val = "";
+
+    							$meas="$mean_value $range $error_value $res[2]$N$std_sem_value$istim_show$time_val";
+																
+							// END DWW Istimul-Tstimul modifications
 							
-							// ... END CLR modifications
-							
-							// -------------------------------------------------------------------------------------
+              				// -------------------------------------------------------------------------------------
 
 							$id_ephys2 = $epdata_id;						
 						}					
@@ -1206,33 +1207,44 @@ if ($text_file_creation)
 						    print ("<strong>$complete_name ($res[0]):</strong> ");
 						  print ("
 								<a href='property_page_ephys.php?id_ephys=$epdata_id&id_neuron=$id&ep=$subject' target='_blank' class='$font_col'>
-								$meas $N$std_sem_value 
+								$meas
 								</a>
 								</td>					
 							</tr>							
-						");								
-            $meas = NULL;
+						");	
+							
+            			$meas = NULL;
+            			$ephys_disp_counter++;
 					}
 				}		
 			}
-
-      // Abbreviations Box
-      $abbreviations = array_unique($abbreviations);
-      if ($abbreviations) {  // checks for non-null vals
-        $definitions = get_abbreviation_definitions($abbreviations);
-        $definition_str = implode('; ', $definitions);
+			
+			if ($ephys_disp_counter == 0) {
 				print ("
-				<tr>
-					<td width='20%' align='right'>
-					</td>
-					<td align='left' width='80%' class='table_neuron_page2'>
-						<br>
-            $definition_str
-					</td>					
-				</tr>							
-				");	
-			}
+							<tr>
+							<td width='20%' align='right'></td>
+							<td align='left' width='80%' class='table_neuron_page2'>None known</td>
+							</tr>
+							");
+			}			
 
+	      // Abbreviations Box
+	      $abbreviations = array_unique($abbreviations);
+	      if ($abbreviations) {  // checks for non-null vals
+		        $definitions = get_abbreviation_definitions($abbreviations);
+		        $definition_str = implode('; ', $definitions);
+				print ("
+					<tr>
+						<td width='20%' align='right'>
+						</td>
+						<td align='left' width='80%' class='table_neuron_page2'>
+							<br>
+	            			$definition_str
+						</td>					
+					</tr>							
+					");	
+			}
+					
 		?>
 		</table>	
 
@@ -1440,6 +1452,80 @@ if ($text_file_creation)
       //sort($net_targets);
 */
 
+      // potential sources of input
+      $result = mysql_query($dendrite_query);
+      $dendrite_parcels = result_set_to_array($result, 'object');
+      //print "<br><br>DENDRITE PARCELS<br>"; print_r($dendrite_parcels);
+      
+      $possible_sources = filter_types_by_morph_property('axons', $dendrite_parcels);
+      //print "<br><br>POSSIBLE SOURCES:<br>"; print_r($possible_sources);
+      
+      $result = mysql_query($explicit_source_query);
+      $explicit_sources = result_set_to_array($result, "t1_id");
+      //print "<br><br>EXPLICIT SOURCES:<br>"; print_r($explicit_sources);
+      
+      if (count($explicit_sources) >= 1) {
+      	$list_explicit_sources = array_unique($explicit_sources);
+      	$list_explicit_sources = get_sorted_records($list_explicit_sources);
+      }
+       
+      $result = mysql_query($explicit_nonsource_query);
+      $explicit_nonsources = result_set_to_array($result, "t1_id");
+      //print "<br><br>EXPLICIT NONSOURCES:<br>"; print_r($explicit_nonsources);
+      
+      if (count($explicit_nonsources) >= 1) {
+      	$list_explicit_nonsources = array_unique($explicit_nonsources);
+      	$list_explicit_nonsources = get_sorted_records($list_explicit_nonsources);
+      }
+       
+      $list_potential_sources = array_diff(array_diff($possible_sources, $explicit_nonsources), $explicit_sources);
+      $list_potential_sources = array_unique($list_potential_sources);
+      $list_potential_sources = get_sorted_records($list_potential_sources);
+      /*
+       $net_sources = array_merge(array_diff($possible_sources, $explicit_nonsources), $explicit_sources);
+      //print "<br><br>NET SOURCES:<br>"; print_r($list_potential_sources);
+      
+      $net_sources = array_unique($net_sources);
+      $net_sources = get_sorted_records($net_sources);
+      */
+      
+      // potential sources of input
+      $result = mysql_query($dendrite_query);
+      $dendrite_parcels = result_set_to_array($result, 'object');
+      //print "<br><br>DENDRITE PARCELS<br>"; print_r($dendrite_parcels);
+
+      $possible_sources = filter_types_by_morph_property('axons', $dendrite_parcels);
+      //print "<br><br>POSSIBLE SOURCES:<br>"; print_r($possible_sources);
+
+      $result = mysql_query($explicit_source_query);
+      $explicit_sources = result_set_to_array($result, "t1_id");
+      //print "<br><br>EXPLICIT SOURCES:<br>"; print_r($explicit_sources);
+
+	  if (count($explicit_sources) >= 1) {
+			$list_explicit_sources = array_unique($explicit_sources);
+			$list_explicit_sources = get_sorted_records($list_explicit_sources);
+	  }
+	  
+      $result = mysql_query($explicit_nonsource_query);
+      $explicit_nonsources = result_set_to_array($result, "t1_id");
+      //print "<br><br>EXPLICIT NONSOURCES:<br>"; print_r($explicit_nonsources);
+
+	  if (count($explicit_nonsources) >= 1) {
+			$list_explicit_nonsources = array_unique($explicit_nonsources);
+			$list_explicit_nonsources = get_sorted_records($list_explicit_nonsources);
+	  }
+	  
+      $list_potential_sources = array_diff(array_diff($possible_sources, $explicit_nonsources), $explicit_sources);
+      $list_potential_sources = array_unique($list_potential_sources);
+      $list_potential_sources = get_sorted_records($list_potential_sources);
+/*
+      $net_sources = array_merge(array_diff($possible_sources, $explicit_nonsources), $explicit_sources);
+      //print "<br><br>NET SOURCES:<br>"; print_r($list_potential_sources);
+
+      $net_sources = array_unique($net_sources);
+      $net_sources = get_sorted_records($net_sources);
+*/
+      
 // Start R 2C connectivity changes
       // print it out
       print connection_table_head("Targets Of Output");
@@ -1496,12 +1582,17 @@ if ($text_file_creation)
 	  	print("</ul></td>");
 	  }
 	  else
+<<<<<<< HEAD
 	  {
 	  		print("<td width='25%' valign='top'><ul id='menuone'>");
 			foreach($list_explicit_sources as $target) { print name_row($target); }
 	  		print("</ul></td>");
 	  }
 	  //<!--- meprint connection_table_foot();
+=======
+			foreach($list_explicit_sources as $source) { print name_row($source); }
+	  print connection_table_foot();
+>>>>>>> e792add0eabf2449baa694c1563887c52e19caea
 
       //<!---me print connection_table_head("Potential sources of input");
 	  if (count($list_potential_sources) < 1) // the list of targets or sources is empty
@@ -1527,11 +1618,15 @@ if ($text_file_creation)
 	  	print("</ul></td>");
 	  }
 	  else
+<<<<<<< HEAD
 	  {
 	  		print("<td width='25%' valign='top'><ul id='menuthree'>");
 			foreach($list_explicit_nonsources as $target) { print name_row($target); }
 			print("</ul></td>");
 	  }
+=======
+			foreach($list_explicit_nonsources as $source) { print name_row($source); }
+>>>>>>> e792add0eabf2449baa694c1563887c52e19caea
 	  print connection_table_foot();
 
 // End R 2C connectivity changes

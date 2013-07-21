@@ -121,8 +121,8 @@ ul
 <p class=MsoNormal><b><u><span style='font-size:16.0pt;line-height:115%;
 font-family:"Arial","sans-serif"'>Release Notes:</span></u></b></p>
 
-<!--
 <p class=MsoNormal><span style='font-size:16.0pt;line-height:115%;
+<<<<<<< HEAD
 font-family:"Arial","sans-serif"'>v1.0&alpha; R 4A (14 May 2013):</span></p>
 -->
 
@@ -134,40 +134,55 @@ style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></p>
 
 
+=======
+font-family:"Arial","sans-serif"'>v1.0&alpha; R 3B:</span></p>
+>>>>>>> e792add0eabf2449baa694c1563887c52e19caea
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Changed the list of articles to accordion functionality sorted by first initial of author.
-(25 March 2013)
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>An updated list of known connections between neuronal types and types known not to be connected have been incorporated into the Neuron Pages and the static Connectivity Matrix.
+(15 Jun 2013)
 </span></p>
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Neuron types showing up in the author table on Find_author.php page and the table now uses datatables functionality.
-(20 April 2013)
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>In the Author Search results, the phrase "(to be determined)" now appears instead of "no type."
+(12 Jun 2013)
 </span></p>
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>The property_page_ephys.php showing up the information in proper format and spacing.
-( 28 April 2013)
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Stimulus-related current and time values now appear for relevant electrophysiological properties on Neuron and Evidence Pages.
+(8 Jun 2013)
 </span></p>
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>All the evidence pages and neuron_page.php page having author names linkable that takes user to Find_author.php page directly displaying information about the author without selecting anything.
-(2 May 2013)
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>All units now appear properly on the Electrophyiology Evidence Pages.
+(8 Jun 2013)
 </span></p>
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>All the evidence pages having neuron types linkable which takes user to neuron_page.php displaying information about that neuron type.
-(5 May 2013)
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Electrophysiological values are now uniformly rounded to 1 decimal point on the Matrix, Neuron, and Evidence Pages, except for APwidth, Slow AHP, and Sag ratio, which are round to 2 places.
+(29 May 2013)
+</span></p>
+
+</BR></BR>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%;
+font-family:"Arial","sans-serif"'>v1.0&alpha; R 3A:</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Replaced missing code, which fixes the missing connectivity information on the Neuron pages.
+(21 May 2013)
 </span></p>
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
@@ -187,6 +202,20 @@ style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>All the evidence pages having neuron types linkable which takes user to neuron_page.php displaying information about that neuron type.
+(5 May 2013)
+</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>All the evidence pages and neuron_page.php page having author names linkable that takes user to Find_author.php page directly displaying information about the author without selecting anything.
+(2 May 2013)
+</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Fixed spacing before and after commas within electrophysiology data on neuron and evidence pages.
 (2 May 2013)
 </span></p>
@@ -198,10 +227,26 @@ style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (2 May 2013)
 </span></p>
 
-</BR></BR>
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>The property_page_ephys.php showing up the information in proper format and spacing.
+(28 April 2013)
+</span></p>
 
-<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%;
-font-family:"Arial","sans-serif"'>v1.0&alpha; R 3A (1 May 2013):</span></p>
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Neuron types showing up in the author table on Find_author.php page and the table now uses datatables functionality.
+(20 April 2013)
+</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Changed the list of articles to accordion functionality sorted by first initial of author.
+(25 March 2013)
+</span></p>
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
@@ -240,6 +285,16 @@ style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Citations from Tricoire et al., 2011, are now correctly attributed to CA1 (-)1003 SO O-LM cells rather than to CA1 (-)1002 O-LM cells.</span></p>
+
+</BR></BR>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%;
+font-family:"Arial","sans-serif"'>v1.0&alpha; R 2D (16 May 2013):</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:115%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:14.0pt;line-height:115%;font-family:"Arial","sans-serif"'>Progress made in vetting entorhinal cortex marker information.</span></p>
 
 </BR></BR>
 
