@@ -134,33 +134,74 @@ $hippo_select = $_SESSION['hippo_select'];
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script language="javascript">
-
-function ctr(select_nick_name2, color, select_nick_name_check)
-{
-	if (document.getElementById(select_nick_name_check).checked == false)
-	{	
-		document.getElementById(select_nick_name2).bgColor = "#FFFFFF";
-		
-	}
-	else if (document.getElementById(select_nick_name_check).checked == true)
-		document.getElementById(select_nick_name2).bgColor = "#EBF283";	
-}
-
-
-
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <?php include ("function/icon.html"); ?>
 <title>Morphology Matrix</title>
+<style>
+.highlighted{
+	border: solid 1px Chartreuse !important;
+}
+</style>
 <script type="text/javascript" src="style/resolution.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="DataTables-1.9.4/media/js/jquery.js" type="text/javascript"></script>
+<script src="DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/media/css/demo_table_jui.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css"/>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	var he;
+	var oTable=$('#morpho_tab').dataTable({
+			"sScrollY": 700,
+			"sScrollX":"100%",
+			"bScrollCollapse": true,
+			"bAutoWidth":false,
+			"bJQueryUI":true,
+			"aaSorting": [],
+			"bFilter": false,
+			 "bPaginate": false,
+			"iDisplayLength":125,
+			"bDestroy": true,
+			"bSortClasses": false,
+	});
+
+	oTable.$('td').hover( function() {
+        var iCol = $('td', this.parentNode).index(this) % 27;
+        $('td:nth-child('+(iCol+1)+')', oTable.$('tr')).addClass( 'highlighted' );
+    }, function() {
+        oTable.$('td.highlighted').removeClass('highlighted');
+    });	
+
+	oTable.$('tr').mouseover( function() {
+		$(this).find("td").each(function(){ 
+			$(this).addClass("highlighted");
+
+			});
+		});
+	oTable.$('tr').mouseout(function(){
+			$(this).find("td").each(function(){ 
+				$(this).removeClass("highlighted");
+			});
+		});
+});
+</script>
+<style>
+div.table_position div#morpho_tab_wrapper.dataTables_wrapper div.fg-toolbar
+{
+width: 1012px; 
+height: 0px; 
+padding: 0px; 
+border-top-width: 0px; 
+border-right-width: 0px; 
+border-bottom-width: 0px;
+}
+</style>
 </head>
 
 <body>
 
 <!-- COPY IN ALL PAGES -->
 <?php include ("function/title.php"); ?>
-
 	<div id="menu_main_button_new">
 	<?php
 		if ($research);	
@@ -188,13 +229,15 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		else
 		{
 	?>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<table width="90%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td align="left">
+		<td width="100%" align="left">
+			<font class='font1'><em>Matrix:</em></font> &nbsp; &nbsp; 
 			<font class="font7_B">Morphology</font> <font class="font7_A">|</font> 
-			<a href='markers.php'><font class="font7">Molecular Markers</font></a> <font class="font7_A">|</font> 
-			<a href='ephys.php'><font class="font7">Electrophysiology</font></a><font class="font7_A">|</font> 
-			<a href='connectivity.php'><font class="font7"> Connectivity</font></a>						
+			<a href='markers.php'><font class="font7"> Markers</font> </a> <font class="font7_A">|</font> 
+			<a href='ephys.php'><font class="font7"> Electrophysiology</font> </a><font class="font7_A">|</font> 
+			<a href='connectivity.php'><font class="font7"> Connectivity</font></a>			
+			
 		</td>
 	</tr>
 	</table>
@@ -239,138 +282,128 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<font class='font5'>Pale versions of the colors in the matrix indicate interpretations of neuronal property information that have not yet been fully verified.</font>
 		<br />
-		
-<table border="0" cellspacing="0" cellpadding="0" class="tabellauno">
-	<tr>
- 		<td>
-		  		<table border="0" cellspacing="1" cellpadding="0" class='table_10'>
+		</td>
+		</tr></table>
+
+		  		<table border="0" cellspacing="1" cellpadding="0" class='table_11'>
 				  <tr>
-					<td width="26.5%" align="center">
+					<td width="24.7%" align="center">
 					</td>
-					<td width="8%" align="center" bgcolor="#770000">
-						<font class='font_table_index2'>DG</font>
+					<td width="7.85%" align="center" bgcolor="#770000">
+						<font class='font_table_index2'>DG(18)</font>
 					</td>
-					<td width="10%" align="center" bgcolor="#C08181">
-						<font class='font_table_index2'>CA3</font>
+					<td width="9%" align="center" bgcolor="#C08181">
+						<font class='font_table_index2'>CA3(25)</font>
 					</td>
-					<td width="8%" align="center" bgcolor="#FFFF99">
-						<font class='font_table_index'>CA2</font>
+					<td width="7%" align="center" bgcolor="#FFFF99">
+						<font class='font_table_index'>CA2(5)</font>
 					</td>
 					<td width="8%" align="center" bgcolor="#FF6103">
-						<font class='font_table_index'>CA1</font>
+						<font class='font_table_index'>CA1(40)</font>
 					</td>
 					<td width="6%" align="center" bgcolor="#FFCC33">
-						<font class='font_table_index'>SUB</font>
+						<font class='font_table_index'>SUB(3)</font>
 					</td>
 					<td width="12%" align="center" bgcolor="#336633">
-						<font class='font_table_index2'>EC</font>			
+						<font class='font_table_index2'>EC(31)</font>			
 					</td>					
 				  </tr>
 				</table>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-		
-			<table border="1" cellspacing="0" cellpadding="0" class='table_11'>
-			  <tr height="50px">
-				<td width="26.3%" align="center" colspan="3">	
-					<font class='font1'>Neuron Type	</font>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SMo.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SMi.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SG.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/H.png" width="10px" border='0'/>
-				</td>
 				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SLM.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SR.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SL.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/SO.png" width="10px" border='0'/>
-				</td>			
+			<table border="1" cellspacing="0" cellpadding="0" class='table_11' id="morpho_tab">
+			  <thead>
+			  <tr height="40px">
+				<th width="26.5%" align="center" style="border:0;">	
+					<font class='font1'>Neuron Type</font>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="verticalText">SMo</div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="verticalText">SMi</div>
+				</th>				
+				<th width="2%" align="center">	
+					<div class="verticalText">SG</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">H</div>
+				</th>
 				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SLM.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SR.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/SO.png" width="10px" border='0'/>
-				</td>			
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText"><font style="font-size:11px;">SLM</font></div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="verticalText">SR</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SL</div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>			
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">SO</div>
+				</th>			
 				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SLM.png" width="10px" border='0'/>
-				</td>			
-				<td width="2%" align="center" >	
-					<img src="images/name/SR.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/SO.png" width="10px" border='0'/>
-				</td>			
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText"><font style="font-size:11px;">SLM</font></div>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="verticalText">SR</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">SO</div>
+				</th>			
+				
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText"><font style="font-size:11px;">SLM</font></div>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="verticalText">SR</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">SO</div>
+				</th>			
 	
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/SM.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/SP.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" class='td_border_color1'>	
-					<img src="images/name/PL.png" width="10px" border='0'/>
-				</td>	
-				
-				<td width="2%" align="center" class='td_border_color2'>	
-					<img src="images/name/I.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/II.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" >	
-					<img src="images/name/III.png" width="10px" border='0'/>
-				</td>	
-				<td width="2%" align="center" >	
-					<img src="images/name/IV.png" width="10px" border='0'/>
-				</td>				
-				<td width="2%" align="center" >	
-					<img src="images/name/V.png" width="10px" border='0'/>
-				</td>
-				<td width="2%" align="center" >	
-					<img src="images/name/VI.png" width="10px" border='0'/>
-				</td>
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText">SM</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">SP</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color1'>	
+					<div class="verticalText">PL</div>
+				</th>
+				<th width="2%" align="center" class='td_border_color2'>	
+					<div class="verticalText">I</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">II</div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="verticalText">III</div>
+				</th>	
+				<th width="2%" align="center" >	
+					<div class="verticalText">IV</div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="verticalText">V</div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="verticalText">VI</div>
+				</th>
 			  </tr>
-			</table>
-
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-		<div class="divinterno">
-		
+			  </thead>
+			  <tbody>
+			  
+			
+		 <div class="divinterno">
 		
 		<form name="nomeform">
 		
@@ -456,7 +489,8 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		// ------------------------------------------------------------------------------------------------------------------
 
 
-		print ("<table border='1' cellspacing='0' cellpadding='0' class='tabelladue'>");
+		//print ("<table border='1' cellspacing='0' cellpadding='0' class='tabelladue'>");
+		//print("<tbody>");
 		// Retrive the NICKNAME in table TYPE 		
 		for ($i=0; $i<$number_type; $i++) //$number_type
 		{
@@ -630,121 +664,188 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo[EC_V]=check_axon_dendrite('EC_V',$hippo_axon, $hippo_dendrite);
 			$hippo[EC_VI]=check_axon_dendrite('EC_VI',$hippo_axon, $hippo_dendrite);
 
-			if (!$research)
-			{		
-				if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601))    		
-				{										
-					print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
-				}
-			}
-			else
-			{
-				if ( ($id == $first_CA3) || ($id == $first_CA2) || ($id == $first_CA1) || ($id == $first_SUB) || ($id == $first_EC))
-				{
-				 	print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
-				}
-			}
+			//if (!$research)
+			//{		
+				//if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601))    		
+				//{										
+					/*print("<tr height='4px'><td style='border:0;'></td></tr>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td style='border:0;'></td>");
+					print("<td bgcolor='#FF0000'></td></tr>");*/
+				//}
+			//}
+			//else
+			//{
+//				if ( ($id == $first_CA3) || ($id == $first_CA2) || ($id == $first_CA1) || ($id == $first_SUB) || ($id == $first_EC))
+	//			{
+				 	/*print("<tr height='4px'><td style='border:0;'></td></tr>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td style='border:0;'></td>");
+				 	print("<td bgcolor='#FF0000'></td></tr>");*/
+		//		}
+		//	}
 
 				$select_nick_name2 = str_replace(':', '_', $nickname);
 				$select_nick_name_check  = $select_nick_name2."_check";
 				
-				print ("<tr id='$select_nick_name2'>");
+				print("<tr id='$select_nick_name2'>");
 
-				if ($position < 200)
-				{
-					$bkcolor='#770000';
-				}
-				else if ($position < 300)
-				{
-					$bkcolor='#C08181';
-				}
-				else if ($position < 400)
-				{
-					$bkcolor='#FFFF99';
-				}	
-				else if ($position < 500)
-				{
-					$bkcolor='#FF6103';
-				}	
-				else if ($position < 600)
-				{
-					$bkcolor='#FFCC33';
-				}				
-				else if ($position < 700)
-				{
-					$bkcolor='#336633';
+ 				if ($position < 200)
+ 				{
+ 					$bkcolor='#770000';
+ 				}
+ 				else if ($position < 300)
+ 				{
+ 					$bkcolor='#C08181';
+ 				}
+ 				else if ($position < 400)
+ 				{
+ 					$bkcolor='#FFFF99';
+ 				}	
+ 				else if ($position < 500)
+ 				{
+ 					$bkcolor='#FF6103';
+ 				}	
+ 				else if ($position < 600)
+ 				{
+ 					$bkcolor='#FFCC33';
+ 				}				
+ 				else if ($position < 700)
+ 				{
+ 					$bkcolor='#336633';
 				}											
-				else
-				{
-					$bkcolor='#FFFFFF';	
+ 				else
+ 				{
+ 					$bkcolor='#FFFFFF';	
 				}
 
-				print ("<td width='3%' align='center' class='cella_1'>");
+				//print ("<td align='center' class='cella_1' style='width:0px; border:0;'>");
 		
-				if ($research) 
-				{
-					if ($id == $first_DG)
-							print ("<font class='font2' color='#770000'><strong>DG</strong></font> ");
+				//if ($research) 
+				//{
+					//if ($id == $first_DG)
+					//		print ("<font class='font2' color='#770000'><strong>DG</strong></font> ");
 //					if ($id == $DG_position[1])
 //						print ("<font class='font2' color='#770000'>($n_DG)</font> ");									
-					if ($id == $first_CA3)
-						print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");
+					//if ($id == $first_CA3)
+						//print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");
 //					if ($id == $CA3_position[1])
 //						print ("<font class='font2' color='#770000'>($n_CA3)</font> ");													
-					if ($id == $first_CA2)
-						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");
+					//if ($id == $first_CA2)
+						//print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");
 //					if ($id == $CA2_position[1])
 //						print ("<font class='font2' color='#770000'>($n_CA2)</font> ");											
-					if ($id == $first_CA1)
-						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");
+					//if ($id == $first_CA1)
+						//print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");
 //					if ($id == $CA1_position[1])
 //						print ("<font class='font2' color='#770000'>($n_CA1)</font> ");													
-					if ($id == $first_SUB)
-						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");
+					//if ($id == $first_SUB)
+						//print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");
 //					if ($id == $SUB_position[1])
 //						print ("<font class='font2' color='#770000'>($n_SUB)</font> ");											
-					if ($id == $first_EC)
-						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");
+					//if ($id == $first_EC)
+						//print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");
 //					if ($id == $EC_position[1])
 //						print ("<font class='font2' color='#770000'>($n_EC)</font> ");															
-				}
-				else
-				{
-					if ($position == 101)
-						print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");				
-					if ($position == 102)
-						print ("<font class='font2' color='#770000'> (18) </font> ");				
-					if ($position == 201)
-						print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");		
-					if ($position == 202)
-						print ("<font class='font2' color='#C08181'> (25) </font> ");				
-					if ($position == 301)
-						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");			
-					if ($position == 302)
-						print ("<font class='font2' color='#FFCC00'> (5) </font> ");				
-					if ($position == 401)
-						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");		
-					if ($position == 402)
-						print ("<font class='font2' color='#FF6103'> (40) </font> ");				
-					if ($position == 501)
-						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");				
-					if ($position == 502)
-						print ("<font class='font2' color='#FFCC33'> (3) </font> ");				
-					if ($position == 601)
-						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");	
-					if ($position == 602)
-						print ("<font class='font2' color='#336633'> (31) </font> ");				
-				}	
+				//}
+// 				else
+// 				{
+// 					if ($position == 101)
+// 						print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");				
+// 					if ($position == 102)
+// 						print ("<font class='font2' color='#770000'> (18) </font> ");				
+// 					if ($position == 201)
+// 						print ("<font class='font2' color='#C08181'> <strong>CA3</strong> </font> ");		
+// 					if ($position == 202)
+// 						print ("<font class='font2' color='#C08181'> (25) </font> ");				
+// 					if ($position == 301)
+// 						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");			
+// 					if ($position == 302)
+// 						print ("<font class='font2' color='#FFCC00'> (5) </font> ");				
+// 					if ($position == 401)
+// 						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");		
+// 					if ($position == 402)
+// 						print ("<font class='font2' color='#FF6103'> (40) </font> ");				
+// 					if ($position == 501)
+// 						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");				
+// 					if ($position == 502)
+// 						print ("<font class='font2' color='#FFCC33'> (3) </font> ");				
+// 					if ($position == 601)
+// 						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");	
+// 					if ($position == 602)
+// 						print ("<font class='font2' color='#336633'> (31) </font> ");				
+// 				}	
 					
 					
-				print ("</td>");
+				//print ("</td>");
+				//print ("<td align='center' style='border:0; width:0px;'>");
+// 				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
+				//print ("</td>");
 
-				print ("<td width='3%' align='center'  bgcolor='$bkcolor'>");
-				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
-				print ("</td>");
 
-
-				print ("<td width='20%' align='right'>");
+				print ("<td width='26.5%' align='center'>");
 			
 					print ("<a href='neuron_page.php?id=$id' target='_blank' class='font_cell'>");
 					
@@ -1086,7 +1187,6 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					}			
 					print ("</td>");
 
-
 					print ("<td width='2%' align='center'>");
 						
 						$unvetted_EC_II = check_unvetted1($id, $hippo_id_property[EC_II], $evidencepropertyyperel);
@@ -1101,7 +1201,6 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					}	
 					print ("</td>");
 					
-
 					print ("<td width='2%' align='center'>");
 						
 						$unvetted_EC_III = check_unvetted1($id, $hippo_id_property[EC_III], $evidencepropertyyperel);
@@ -1115,7 +1214,6 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						print ("</a>");
 					}			
 					print ("</td>");
-
 
 					print ("<td width='2%' align='center'>");
 						
@@ -1164,23 +1262,12 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				print ("</tr>");
 		}
 		
-		print ("</table>");
+		//print ("</tbody></table><div id='pager'></div>");
 		?>
 		
 		</form>
-		
-		
-		
 		</div>
-		</td>
-	</tr>
-
-	</table>		
-		
-		
-	</td>
-  </tr>
-</table>
-</div>
+		</tbody></table><div id='pager'></div>
+		</div>
 </body>
 </html>

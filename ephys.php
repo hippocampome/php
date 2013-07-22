@@ -69,6 +69,15 @@ $epdata = new epdata($class_epdata);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<style>
+
+
+#ephys_tab_wrapper
+{
+left: 62px;
+}
+
+</style>
 <script language="javascript">
 
 function ctr(select_nick_name2, color, select_nick_name_check)
@@ -88,6 +97,69 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 <?php include ("function/icon.html"); ?>
 <title>Ephys Matrix</title>
 <script type="text/javascript" src="style/resolution.js"></script>
+<script src="DataTables-1.9.4/media/js/jquery.js" type="text/javascript"></script>
+<script src="DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/media/css/demo_table_jui.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css"/>
+<style>
+.highlighted{
+  	border: solid 1px Chartreuse !important;
+}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	var he;
+	var oTable=$('#ephys_tab').dataTable({
+		"sScrollY": 700,
+		"sScrollX":"100%",
+		"bScrollCollapse": true,
+		"bAutoWidth":false,
+		"bJQueryUI":true,
+		"aaSorting": [],
+		"bFilter": false,
+		 "bPaginate": false,
+		"iDisplayLength":125,
+		"bDestroy": true,
+		"bSortClasses": false,
+	});
+
+	
+	oTable.$('td').hover( function() {
+        var iCol = $('td', this.parentNode).index(this) % 11;
+        $('td:nth-child('+(iCol+1)+')', oTable.$('tr')).addClass( 'highlighted' );
+    }, function() {
+        oTable.$('td.highlighted').removeClass('highlighted');
+    });	
+
+	oTable.$('tr').mouseover( function() {
+		$(this).find("td").each(function(){ 
+			$(this).addClass("highlighted");
+
+			});
+		});
+	oTable.$('tr').mouseout(function(){
+			$(this).find("td").each(function(){ 
+				$(this).removeClass("highlighted");
+			});
+		});
+});
+
+
+</script>
+<style>
+ div.table_position div#ephys_tab_wrapper.dataTables_wrapper div.fg-toolbar
+ { 
+ width: 1012px;
+ height: 0px;
+ padding: 0px;
+ border-top-width: 0px;
+ border-right-width: 0px; 
+ border-bottom-width: 0px; 
+ }
+</style>
+
+
 </head>
 
 <body>
@@ -121,13 +193,15 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		else
 		{
 	?>
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<table width="90%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td align="left">
-					<a href='morphology.php'><font class="font7">Morphology</font></a> <font class="font7_A">|</font> 
-					<a href='markers.php'><font class="font7">Molecular Markers</font></a> <font class="font7_A">|</font> 
+				<td width="100%" align="left">
+					<font class='font1'><em>Matrix:</em></font> &nbsp; &nbsp; 
+					<a href='morphology.php'><font class="font7">Morphology</font> <font class="font7_A">|</font> 
+					<a href='markers.php'><font class="font7"> Markers</font> </a> <font class="font7_A">|</font> 
 					<font class="font7_B">Electrophysiology</font> <font class="font7_A">|</font> 
-					<a href='connectivity.php'><font class="font7">Connectivity</font></a>
+					<a href='connectivity.php'><font class="font7"> Connectivity</font></a>
+					</font>	
 				</td>
 			</tr>
 			</table>
@@ -167,53 +241,49 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		<font class='font5'>Pale versions of the colors in the matrix indicate interpretations of neuronal property information that have not yet been fully verified.</font>
 
 		<br />
-			
-				
-<table border="0" cellspacing="0" cellpadding="0" class="tabellauno">
-	<tr>
- 		<td>
-		  		<table border="0" cellspacing="1" cellpadding="0" class="table_10">
-				  <tr>
-					<td width="30%" align="center">
-						<font class='font1'>Neuron Type	</font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>V<sub>rest</sub><br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>R<sub>in</sub><br/><small>(M&Omega;)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>&tau;<sub>m</sub><br/><small>(ms)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>V<sub>thresh</sub><br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>Fast AHP<br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>AP<sub>ampl</sub><br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>AP<sub>width</sub><br/><small>(ms)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>Max F.R.<br/><small>(Hz)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>Slow AHP<br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
-						<font class='font_table_index5'>Sag ratio</font>
-					</td>
-				  </tr>
-				</table>
 		</td>
-	</tr>
-
-	<tr>
-		<td>
+	</tr></table>	
+				
+<!--<table border="0" cellspacing="0" cellpadding="0" class="tabellauno">-->
+		  	  <table border="2" cellspacing="1" cellpadding="0" class="table_10" id="ephys_tab">
+		  	  <thead>
+					<tr>
+					<th width="23.5%" align="center">
+						<font class='font1'>Neuron Type	</font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>V<sub>rest</sub><br/><small>(mV)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>R<sub>in</sub><br/><small>(M&Omega;)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>&tau;<sub>m</sub><br/><small>(ms)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>V<sub>thresh</sub><br/><small>(mV)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>Fast AHP<br/><small>(mV)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>AP<sub>ampl</sub><br/><small>(mV)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>AP<sub>width</sub><br/><small>(ms)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>Max F.R.<br/><small>(Hz)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>Slow AHP<br/><small>(mV)</small></font>
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
+						<font class='font_table_index5'>Sag ratio</font>
+					</th>
+				  </tr>
+				  </thead>
+				  <tbody>
 		<div class="divinterno">
 		<?php
 		// calculate the first number for each zone, only in case of reseach ------------------------------------------------
@@ -292,7 +362,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		}
 		// ------------------------------------------------------------------------------------------------------------------		
 		
-		print ("<table border='1' cellspacing='1' cellpadding='0' class='tabelladue1'>");
+		//print ("<table border='1' cellspacing='1' cellpadding='0' class='tabelladue1'>");
 		
 		$n_ephys = 10;
 		
@@ -411,14 +481,14 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			{
 				if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601))    		
 				{										
-					print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
+					//print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
 				}
 			}
 			else
 			{
 				if ( ($id_type == $first_CA3) || ($id_type == $first_CA2) || ($id_type == $first_CA1) || ($id_type == $first_SUB) || ($id_type == $first_EC))
 				{
-				 	print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
+				 	//print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
 				}
 			}			
 			
@@ -457,9 +527,9 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					$bkcolor='#FFFFFF';	
 				}
 
-				print ("<td width='3%' align='center' class='cella_1'>");
+				//print ("<td width='3%' align='center' class='cella_1'>");
 
-				if ($research) 
+			/*	if ($research) 
 				{
 					if ($id_type == $first_DG)
 							print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");		
@@ -503,11 +573,11 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				}
 					
 				print ("</td>");
-
-				print ("<td width='3%' align='center' bgcolor='$bkcolor'>	");
+			*/
+			/*	print ("<td width='3%' align='center' bgcolor='$bkcolor'>	");
 				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
 				print ("</td>");
-
+			*/
 			
 				print ("<td width='23.5%' align='center'>	");
 					print ("<a href='neuron_page.php?id=$id_type' target='_blank' class='font_cell'>");
@@ -530,12 +600,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				// original code, pre-Vrest minus sign kludge
 				if ($ephys2[Vrest] != NULL)
-					$formatted_value = number_format($ephys2[Vrest],1);
+					$unit = 'mV';
 				else
-					$formatted_value = NULL;
+					$unit = '';					
 					
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Vrest]&id_neuron=$id_type&ep=Vrest' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
-
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Vrest]&id_neuron=$id_type&ep=Vrest' target='_blank' class='$color_unvetted'>$ephys2[Vrest] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Vrest]&id_neuron=$id_type&ep=Vrest' target='_blank' class='$color_unvetted'>$ephys2[Vrest]</a>");
+				print ("</td>");
 				//
 				// start of Vrest minus sign kludge code
 				//if ($ephys2[Vrest] != NULL){
@@ -555,11 +626,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4';
 					
 				if ($ephys2[Rin] != NULL)
-					$formatted_value = number_format($ephys2[Rin],1);
+					$unit = 'M&Omega;';
 				else
-					$formatted_value = NULL;
-				
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Rin]&id_neuron=$id_type&ep=Rin' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
+					$unit = '';	
+											
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Rin]&id_neuron=$id_type&ep=Rin' target='_blank' class='$color_unvetted'>$ephys2[Rin] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Rin]&id_neuron=$id_type&ep=Rin' target='_blank' class='$color_unvetted'>$ephys2[Rin]</a>");
+				print ("</td>");
 	
 
 
@@ -568,13 +641,15 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4_unvetted';
 					else	
 						$color_unvetted = 'font4';
-
+						
 				if ($ephys2[tm] != NULL)
-					$formatted_value = number_format($ephys2[tm],1);
+					$unit = 'ms';
 				else
-					$formatted_value = NULL;
-													
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[tm]&id_neuron=$id_type&ep=tau' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");		
+					$unit = '';							
+					
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[tm]&id_neuron=$id_type&ep=tau' target='_blank' class='$color_unvetted'>$ephys2[tm] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[tm]&id_neuron=$id_type&ep=tau' target='_blank' class='$color_unvetted'>$ephys2[tm]</a>");
+				print ("</td>");		
 
 
 				
@@ -586,11 +661,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4';
 
 				if ($ephys2[Vthresh] != NULL)
-					$formatted_value = number_format($ephys2[Vthresh],1);
+					$unit = 'mV';
 				else
-					$formatted_value = NULL;
+					$unit = '';	
 															
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Vthresh]&id_neuron=$id_type&ep=V-thresh' target='_blank' class='$color_unvetted '>$formatted_value</a></td>");
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Vthresh]&id_neuron=$id_type&ep=V-thresh' target='_blank' class='$color_unvetted '>$ephys2[Vthresh] $unit </a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[Vthresh]&id_neuron=$id_type&ep=V-thresh' target='_blank' class='$color_unvetted '>$ephys2[Vthresh]</a>");
+				print ("</td>");
 
 
 
@@ -601,11 +678,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4';					
 
 				if ($ephys2[fast_AHP] != NULL)
-					$formatted_value = number_format($ephys2[fast_AHP],1);
+					$unit = 'mV';
 				else
-					$formatted_value = NULL;
-														
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[fast_AHP]&id_neuron=$id_type&ep=Fast AHP' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
+					$unit = '';	
+										
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[fast_AHP]&id_neuron=$id_type&ep=Fast AHP' target='_blank' class='$color_unvetted'>$ephys2[fast_AHP] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[fast_AHP]&id_neuron=$id_type&ep=Fast AHP' target='_blank' class='$color_unvetted'>$ephys2[fast_AHP]</a>");
+				print ("</td>");
 
 
 
@@ -617,11 +696,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4';
 
 				if ($ephys2[AP_ampl] != NULL)
-					$formatted_value = number_format($ephys2[AP_ampl],1);
+					$unit = 'mV';
 				else
-					$formatted_value = NULL;
+					$unit = '';	
 					
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[AP_ampl]&id_neuron=$id_type&ep=AP ampl' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[AP_ampl]&id_neuron=$id_type&ep=AP ampl' target='_blank' class='$color_unvetted'>$ephys2[AP_ampl] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[AP_ampl]&id_neuron=$id_type&ep=AP ampl' target='_blank' class='$color_unvetted'>$ephys2[AP_ampl]</a>");
+				print ("</td>");
 
 
 				
@@ -632,11 +713,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4';				
 
 				if ($ephys2[AP_width] != NULL)
-					$formatted_value = number_format($ephys2[AP_width],2);
+					$unit = 'ms';
 				else
-					$formatted_value = NULL;
+					$unit = '';	
 											
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[AP_width]&id_neuron=$id_type&ep=AP width' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[AP_width]&id_neuron=$id_type&ep=AP width' target='_blank' class='$color_unvetted'>$ephys2[AP_width] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[AP_width]&id_neuron=$id_type&ep=AP width' target='_blank' class='$color_unvetted'>$ephys2[AP_width]</a>");
+				print ("</td>");
 
 
 
@@ -647,11 +730,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4';					
 				
 				if ($ephys2[max_fr] != NULL)
-					$formatted_value = number_format($ephys2[max_fr],1);
+					$unit = 'Hz';
 				else
-					$formatted_value = NULL;
+					$unit = '';	
 									
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[max_fr]&id_neuron=$id_type&ep=Max F.R.' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[max_fr]&id_neuron=$id_type&ep=Max F.R.' target='_blank' class='$color_unvetted'>$ephys2[max_fr] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[max_fr]&id_neuron=$id_type&ep=Max F.R.' target='_blank' class='$color_unvetted'>$ephys2[max_fr]</a>");
+				print ("</td>");
 
 
 				
@@ -662,11 +747,13 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 						$color_unvetted = 'font4';					
 
 				if ($ephys2[slow_AHP] != NULL)
-					$formatted_value = number_format($ephys2[slow_AHP],2);
+					$unit = 'mV';
 				else
-					$formatted_value = NULL;
+					$unit = '';	
 					
-				print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[slow_AHP]&id_neuron=$id_type&ep=Slow AHP' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
+					//print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[slow_AHP]&id_neuron=$id_type&ep=Slow AHP' target='_blank' class='$color_unvetted'>$ephys2[slow_AHP] $unit</a>");
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[slow_AHP]&id_neuron=$id_type&ep=Slow AHP' target='_blank' class='$color_unvetted'>$ephys2[slow_AHP]</a>");
+				print ("</td>");
 		
 		
 		
@@ -674,29 +761,18 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					if ($unvetted_ephys2[sag_ratio] == 1)
 						$color_unvetted = 'font4_unvetted';				
 					else	
-						$color_unvetted = 'font4';
-										
-					if ($ephys2[sag_ratio] != NULL)
-						$formatted_value = number_format($ephys2[sag_ratio],2);
-					else
-						$formatted_value = NULL;
-					
-					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[sag_ratio]&id_neuron=$id_type&ep=Sag-ratio' target='_blank' class='$color_unvetted'>$formatted_value</a></td>");
+						$color_unvetted = 'font4';					
+									
+					print ("<a href='property_page_ephys.php?id_ephys=$id_ephys2[sag_ratio]&id_neuron=$id_type&ep=Sag-ratio' target='_blank' class='$color_unvetted'>$ephys2[sag_ratio]</a>");
+				print ("</td>");
 				
 				
 				
 			print ("</tr>");
 		}
-		print ("</table>");
+		print ("</tbody></table>");
 		?>		
-		</div>
-		</td>
-	</tr>
-</table>		
-				
-	</td>
-  </tr>
-</table>
+		</div>		
 </div>
 </body>
 </html>
