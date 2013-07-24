@@ -736,13 +736,17 @@ if ($text_file_creation)
 			// Citation figure: ***************************************************************
 			$fragment -> retrive_by_id($id_fragment);
 			$citation = $fragment -> getQuote();
-
+			
 			//$original_id = $fragment -> getOriginal_id();
 
-			// retrieve article_id from ArticleEvidenceRel by using Evidence_id
-			$articleevidencerel -> retrive_article_id($id_fragment);
+			// retrieve Evidence_id from EvidenceFragmentRel by using Fragment_id
+			$evidencefragmentrel -> retrieve_evidence_id($id_fragment);
+			$id_evidence = $evidencefragmentrel -> getEvidence_id_array(0);
+				
+			// retrieve Article_id from ArticleEvidenceRel by using Evidence_id
+			$articleevidencerel -> retrive_article_id($id_evidence);
 			$id_article = $articleevidencerel -> getArticle_id_array(0);
-
+			
 			// retrieve all information from article table by using article_id
 			$article -> retrive_by_id($id_article) ; 
 			$title = $article -> getTitle();
@@ -793,8 +797,8 @@ if ($text_file_creation)
 				$name_authors = $name_authors.', '.$name_a;
 			}
 			$name_authors[0] = '';
-			$name_auhors_representative[0]= '';
-			$name_auhors_representative=trim($name_auhors_representative);
+			$name_authors_representative[0]= '';
+			$name_authors_representative=trim($name_authors_representative);
 			$name_authors = trim($name_authors);				
 
 			$pages= $first_page." - ".$last_page;
