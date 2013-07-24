@@ -796,11 +796,11 @@ if ($text_file_creation)
 		
 				$name_authors = $name_authors.', '.$name_a;
 			}
-			$name_authors[0] = '';
-			$name_authors_representative[0]= '';
+			$name_authors[0] = '';			
+ 			//$name_authors_representative[0]= '';
 			$name_authors_representative=trim($name_authors_representative);
 			$name_authors = trim($name_authors);				
-
+				
 			$pages= $first_page." - ".$last_page;
 
 			// ********************************************************************************
