@@ -37,13 +37,9 @@ class evidencefragmentrel
 		while(list($id) = mysql_fetch_row($rs))
 		{	
 			$this->setFragment_id_array($id, $n);		
-			print("$this");
-			print("\n");	
 			$n = $n +1;
 		}
 		$this->setN_fragment_id($n);	
-		print("$this");
-		print("\n");	
     }	
 
 	public function retrieve_evidence_id($fragment_id)
