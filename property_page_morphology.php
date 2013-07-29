@@ -666,7 +666,7 @@ function show_only_morphology(link, start1, stop1)
 					$n_evidence_id = $evidencepropertyyperel -> getN_evidence_id();
 				}
 												
-				$n_article = 0; // <-- Number of article
+				$n_article = 0; // <-- Number of articles
 				for ($i=0; $i<$n_evidence_id; $i++)
 				{
 					$evidence_id[$i] = $evidencepropertyyperel -> getEvidence_id_array($i);
@@ -674,7 +674,7 @@ function show_only_morphology(link, start1, stop1)
 					// Retrieve Fragment_id frmo EvidenceFragmentRel by using Evidence_id
 					$evidencefragmentrel -> retrive_fragment_id($evidence_id[$i]);
 					
-					$n_fragment_id = $evidencefragmentrel -> getN_fragment_id();
+					$n_fragment_id = $evidencefragmentrel -> getN_fragment_id();  // not needed since 1-to-1 relation between evidence and fragments
 				
 					for ($i1=0; $i1<$n_fragment_id; $i1++)
 					{
@@ -692,7 +692,8 @@ function show_only_morphology(link, start1, stop1)
 					$page_location = $fragment -> getPage_location();
 				
 					// retrieve article_id from ArticleEvidenceRel by using Evidence_id
-					$articleevidencerel -> retrive_article_id($fragment_id[$i]);
+					//$articleevidencerel -> retrive_article_id($fragment_id[$i]);
+					$articleevidencerel -> retrive_article_id($evidence_id[$i]);
 					$id_article = $articleevidencerel -> getArticle_id_array(0);
 		
 					// retrieve all information from article table by using article_id
@@ -1013,9 +1014,9 @@ function show_only_morphology(link, start1, stop1)
 				<br />
 
 			<?php	
-				// There are not results:
+				// There are no results available:
 				if ($n_id == 0)
-					print ("<br><font class='font12'>There are not results</font><br><br>");
+					print ("<br><font class='font12'>There are no results available.</font><br><br>");
 									
 				for ($i=0; $i<$n_id; $i++)
 				{	
