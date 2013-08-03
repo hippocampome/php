@@ -57,16 +57,85 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<?php include ("function/icon.html"); ?>
 	<title>Connectivity Matrix</title>
-	<script type="text/javascript" src="style/resolution.js"></script>
+	<style>
+.highlighted{
+	border: solid 1px Chartreuse !important;
+}
+
+#connectivity_table_wrapper{
+width:1155px;
+}
+
+</style>
+<script type="text/javascript" src="style/resolution.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="DataTables-1.9.4/media/js/jquery.js" type="text/javascript"></script>
+<script src="style/blockUI.js" type="text/javascript"></script>
+<script src="DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="DataTables-1.9.4/media/js/FixedColumns.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/media/css/demo_table_jui.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css"/>
+
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	$('.blockUI').remove();
+	var he;
+	var oTable=$('#connectivity_table').dataTable({
+			"sScrollY": 400,
+			"sScrollX": "100%",
+			"bScrollCollapse": true,
+			"bAutoWidth":false,
+			"bJQueryUI":true,
+			"aaSorting": [],
+			"bFilter": false,
+			 "bPaginate": false,
+			"iDisplayLength":20,
+			"bDestroy": true,
+			"bSortClasses": false
+			});
+
+	/*new FixedColumns( oTable );*/
+	new FixedColumns( oTable);
 	
-	<link href="fixed_header_table/clrcss/fixedHeaderTable_defaultTheme.css" rel="stylesheet" media="screen" />
-	<link href="fixed_header_table/clrcss/CLR_theme.css" rel="stylesheet" media="screen" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-	<script src="fixed_header_table/jquery.fixedheadertable.js"></script>
-	<script src="fixed_header_table/table_defns.js"></script>        
+	oTable.$('td').hover( function() {
+        var iCol = $('td', this.parentNode).index(this) % 123;
+        $('td:nth-child('+(iCol+1)+')', oTable.$('tr')).addClass( 'highlighted' );
+    }, function() {
+        oTable.$('td.highlighted').removeClass('highlighted');
+    });	
+
+	oTable.$('tr').mouseover( function() {
+		$(this).find("td").each(function(){ 
+			$(this).addClass("highlighted");
+
+			});
+		});
+	oTable.$('tr').mouseout(function(){
+			$(this).find("td").each(function(){ 
+				$(this).removeClass("highlighted");
+			});
+		});
+});
+</script> 
+
+<style>
+ div.table_position div#connectivity_table_wrapper.dataTables_wrapper div.fg-toolbar
+ { 
+ width: 1012px;
+ height: 0px;
+ padding: 0px;
+ border-top-width: 0px;
+ border-right-width: 0px; 
+ border-bottom-width: 0px; 
+ }
+
+</style>
 </head>
 
 <body>
+<div style="z-index: 1000; border: medium none; margin: 0pt; padding: 0pt; width: 100%; height: 100%; top: 0pt; left: 0pt; background-color: rgb(0, 0, 0); opacity: 0.6; cursor: wait; position: fixed;" class="blockUI blockOverlay"></div>
+<div style="z-index: 1001; position: fixed; padding: 0px; margin: 0px; width: 20%; top: 40%; left: 35%; text-align: center; color: rgb(0, 0, 0); border: 3px solid rgb(170, 170, 170); background-color: rgb(255, 255, 255); cursor: wait;" class="blockUI blockMsg blockPage"><span><img src="images/busy.gif" style="width:100%;"/><h4 style="line-height:3px;">Loading Page...</h4></span></div>
 
 <!-- COPY IN ALL PAGES -->
 <?php include ("function/title.php"); ?>
@@ -97,12 +166,46 @@
 </div>
 <!-- ------------------------ -->
 
-<div class="clr_table_position">
-<table border="0" cellspacing="0" cellpadding="0" class='body_table'>
+<div class="table_position">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class='body_table'>
+  <tr height="30">
+    <td></td>
+  </tr>
   <tr>
-    <td width="950">
-		<div class='clr_container divider'>
-		<div class='clr_grid height600'>
+    <td>
+		<!-- ****************  BODY **************** -->
+
+		<font class='font1'>Connectivity matrix</font>
+		<?php 
+			if ($research){
+				$full_search_string = $_SESSION['full_search_string'];
+				if ($number_type == 1)
+					print ("<font class='font3'> $number_type Result  [$full_search_string]</font>");
+				else
+					print ("<font class='font3'> $number_type Results  [$full_search_string]</font>");			
+			}
+		?>
+			
+		<br />
+		<font class='font3'>You can also view the entire matrix as a <a href='images/connectivity/Connectivity_Matrix.jpg' target='_blank'>.jpg image</a></font>
+		<br/><font class='font5'><strong>Legend:</strong> </font>&nbsp; &nbsp;
+		<img src="images/connectivity/excitatory.png" width="10px" border="0"/>
+				<font class='font5'>Potential Excitatory Non-PCL Connection</font>&nbsp; &nbsp;
+	     <img src="images/connectivity/inhibitory.png" width="10px" border="0"/>
+				<font class='font5'>Potential Inhibitory Non-PCL Connection</font>&nbsp; &nbsp;
+				
+		<img src="images/connectivity/PCL_only.png" width="10px" border="0"/>
+				<font class='font5'>Potential Inhibitory PCL-Only Connection</font><br/>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;	
+					<img src='images/connectivity/known_connection.png' width="20px" border="0" height="10px"/>
+					<font face="Verdana, Arial, Helvetica, sans-serif" size="2">Known Connection</font>
+			
+			<img src='images/connectivity/known_nonconnection.png' width="20px" border="0" height="10px"/>
+				<font face="Verdana, Arial, Helvetica, sans-serif" size="2">Known Non-Connection</font>		
+		<br />
+		&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+		<font class="font5"><strong>PCL</strong>&nbsp;&nbsp;:Principal Cell Layer</font>
+		</td>
+	</tr></table>
 		
 		<?php 				
 			if ($research) {
@@ -179,15 +282,18 @@
 				
 			// if table is big enough, use a fixed first column
 			if ( ($research) And ($n_All < 26) )
-				print("<table id='connectivity_table_small' class='fancyTable' cellpadding='0' cellspacing='0'>");
+			{
+				print("<table id='connectivity_table_small' class='fancyTable body_table' cellpadding='0' cellspacing='0' border='1' width='100%'>");
+			}
 			else
-				print("<table id='connectivity_table' class='fancyTable' cellpadding='0' cellspacing='0'>");
-		
+			{
+				print("<table id='connectivity_table' class='fancyTable body_table' cellpadding='0' cellspacing='0' border='1' width='100%'>");
+			}
 			
 			/* Connectivity matrix header */
 			
-			print("<thead><tr>");
-				print("<th bgcolor='#FFFFFF' style='height:175px; width:175px;'><img src='images/connectivity/spacer_first_cell_2.png' width='175' height='175' border='0'/></th>");				
+			print("<thead><tr height='200px'>");
+				print("<th bgcolor='#FFFFFF' style='height:190px; width:195px;'><img src='images/connectivity/spacer_first_cell_2.png' width='195px' height='200px' border='0'/></th>");				
 				
 				// read in potential connectivity csv file
 				$pot_conn_csv = file_get_contents('connectivity_data_files/potential_connectivity_matrix_v1.0alpha.csv', FILE_USE_INCLUDE_PATH);
@@ -236,18 +342,18 @@
 					if (!$research) {
 						if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601)) {
 							$num_columns = $num_columns + 1;
-							print ("<th style='width:4px' bgcolor='#FF0000'></th>");
+							//print ("<th style='width:4px' bgcolor='#FF0000'></th>");
 						}
 					}
 					else {
 						if ($i1 !=0 And ( ($id == $first_CA3) || ($id == $first_CA2) || ($id == $first_CA1) || ($id == $first_SUB) || ($id == $first_EC)) )
 						{								
 							$num_columns = $num_columns + 1;
-							print ("<th style='width:4px' bgcolor='#FF0000'></th>");
+							//print ("<th style='width:4px' bgcolor='#FF0000'></th>");
 						}
 					}
 				
-					print ("<th bgcolor='#E0FFFF' style='vertical-align:bottom; width:20px; max-height:175px;'>");
+					print ("<th bgcolor='#E0FFFF' style='vertical-align:bottom; width:10px;'>");
 					
 					print ("<a href='neuron_page.php?id=$id' target='_blank' class='font_cell_3'>");	
 
@@ -255,8 +361,9 @@
 					$type_name_image_path = str_replace(':', '_', $subregion_nickname_type);
 					$type_name_image_path = str_replace('/', '_', $type_name_image_path);
 					$type_name_image_path = '\'images/name_neuron_type/rotated/' . $type_name_image_path . '.png\'';
-					print ("<img src=$type_name_image_path alt=$type_name_image_path style='max-height:175px' border='0'/>");
+					//print ("<img src=$type_name_image_path alt=$type_name_image_path style='max-height:175px' border='0'/>");
 
+					print ("<div class='connectVerticalText'><font color='#339900'>$subregion_nickname_type</font></div>");
 					/* needed for vText */
 					//print ("<div style='display: inline-block; width: 30px; height: 200px; position: relative; background-color: #ffffff; '>");
 					//print ("<div style='position:absolute; left:0; bottom:0;' class='vText'>");						
@@ -304,16 +411,19 @@
 					if (!$research) {
 						$rowIdx = $row;
 						if ( ($position_row == 201) || ($position_row == 301) || ($position_row == 401) || ($position_row == 501) || ($position_row == 601))					
-							print ("<tr style='height:4px'><td bgcolor=#FF0000 style='width:175px'></td><td colspan='" . $num_merged_cols . "' bgcolor='#FF0000'></td></tr>");
-					}
+						{
+							//print ("<tr style='height:4px'><td bgcolor=#FF0000 style='width:175px'></td><td colspan='" . $num_merged_cols . "' bgcolor='#FF0000'></td></tr>");
+						}
+						}
 					else {
 						$rowIdx = array_search($id_type_row, $known_header) - 1;
 						if ($row !=0 And ( ($id_type_row == $first_CA3) || ($id_type_row == $first_CA2) || ($id_type_row == $first_CA1) || ($id_type_row == $first_SUB) || ($id_type_row == $first_EC)) )
-							print ("<tr style='height:4px'><td bgcolor=#FF0000 style='width:175px'></td><td colspan='" . $num_merged_cols . "' bgcolor='#FF0000'></td></tr>");
-
+						{
+							//print ("<tr style='height:4px'><td bgcolor=#FF0000 style='width:175px'></td><td colspan='" . $num_merged_cols . "' bgcolor='#FF0000'></td></tr>");
+						}
 					}
 						
-					print ("<tr><td bgcolor='#E0FFFF' style='text-align:right; vertical-align:middle; max-width:175px; height:20px;'>");
+					print ("<tr><td bgcolor='#E0FFFF' style='text-align:left; overflow:hidden; vertical-align:middle; width:195px; height:20px;'>");
 														
 					print ("<a href='neuron_page.php?id=$id_type_row' target='_blank' class='font_cell_3'>");
 
@@ -321,13 +431,13 @@
 					$type_name_image_path = str_replace(':', '_', $subregion_nickname_type_row);
 					$type_name_image_path = str_replace('/', '_', $type_name_image_path);
 					$type_name_image_path = '\'images/name_neuron_type/unrotated/' . $type_name_image_path . '.png\'';
-					print ("<img src=$type_name_image_path alt=$type_name_image_path border='0' style='max-width:175px'/>");
+					//print ("<img src=$type_name_image_path alt=$type_name_image_path border='0' style='max-width:175px'/>");
 					
-					/* needed for normal, horizontal text */
-					//if (strpos($subregion_nickname_type_row, '(+)') == TRUE)
-					//	print ("<font style='font-size:12px' color='#339900'>$subregion_nickname_type_row</font>");
-					//if (strpos($subregion_nickname_type_row, '(-)') == TRUE)
-					//	print ("<font style='font-size:12px' color='#CC0000'>$subregion_nickname_type_row</font>");							
+					//needed for normal, horizontal text 
+					if (strpos($subregion_nickname_type_row, '(+)') == TRUE)
+						print ("<font style='font-size:12px' color='#339900'>$subregion_nickname_type_row</font>");
+					if (strpos($subregion_nickname_type_row, '(-)') == TRUE)
+						print ("<font style='font-size:12px' color='#CC0000'>$subregion_nickname_type_row</font>");							
 					
 					print ("</a>");								
 					print ("</td>");
@@ -350,12 +460,16 @@
 						if (!$research) {
 							$colIdx = $col;
 							if ( ($position_col == 201) || ($position_col == 301) || ($position_col == 401) || ($position_col == 501) || ($position_col == 601))
-								print ("<td style='width:4px' bgcolor='#FF0000'></td>");
-						}
+							{
+								//print ("<td style='width:4px' bgcolor='#FF0000'></td>");
+							}
+					   }
 						else {		
 							$colIdx = array_search($id_type_col, $known_header) - 1;
 							if ($col !=0 And ( ($id_type_col == $first_CA3) || ($id_type_col == $first_CA2) || ($id_type_col == $first_CA1) || ($id_type_col == $first_SUB) || ($id_type_col == $first_EC)))
-								print ("<td style='width:4px' bgcolor='#FF0000'></td>");
+							{
+								//print ("<td style='width:4px' bgcolor='#FF0000'></td>");
+							}
 						}
 						
 						if ($known_conn_matrix[$rowIdx][$known_header[$colIdx+1]] == 0)
@@ -377,7 +491,7 @@
 							}
 						}
 						
-						print ("<td bgcolor=$presynaptic_bg_color style='text-align:center; vertical-align:middle'>");
+						print ("<td bgcolor=$presynaptic_bg_color style='text-align:center; vertical-align:middle' width='20px'>");
 						
 						if ($known_conn_matrix[$rowIdx][$known_header[$colIdx+1]] == 0)
 							print ("<img src='images/connectivity/known_nonconnection.png' width='20px' border='0'/>");
@@ -408,71 +522,6 @@
 			
 		</div>
 		</div>	
-	</td>
-	
-	
-	<!-- LEGEND -->
-	<td width="200" style="vertical-align:top">
-	
-		<br><br>
-		  
-		<table border="0" cellspacing="5">
-			<tr height="75" style='vertical-align:top'>
-				<td colspan="2" style="text-align:center"><font class='font5'>You can also view the entire<br>matrix as a <a href='images/connectivity/Connectivity_Matrix.jpg' target='_blank'>.jpg image</a></font></td>				
-			</tr>
-			<tr height="50">
-				<td colspan="2" style="text-align:center"><font class='font7'>Legend</font></td>
-			</tr>
-			<tr>
-				<!-- <td width="10"><img src='images/connectivity/excitatory.png' width="13px" border="0"/></td>  -->
-				<td bgcolor=#000000></td>
-				<td><font class='font5'>Potential Excitatory Non-PCL Connection</font></td>
-			</tr>
-			<tr>
-				<!-- <td><img src='images/connectivity/inhibitory.png' width="13px" border="0"/></td>  -->
-				<td bgcolor=#AAAAAA></td>
-				<td><font class='font5'>Potential Inhibitory Non-PCL Connection<br></font></td> 
-			</tr>
-			<tr>
-				<!-- <td><img src='images/connectivity/PCL_only.png' width="13px" border="0"/></td>  -->
-				<td bgcolor=#FF8C00></td>
-				<td><font class='font5'>Potential Inhibitory PCL-Only Connection</font></td>
-			</tr>
-			<tr height="20"></tr>
-			<!--
-				<tr>
-					<td><img src='images/connectivity/AIS_targeting.png' width="13px" border="0"/></td>
-					<td><font class='font5'>PCL AIS Connection</font></td>
-				</tr>
-				<tr> 	
-					<td><img src='images/connectivity/perisomatic_targeting.png' width="13px" border="0"/></td>
-					<td><font class='font5'>PCL Perisomatic Connection</font></td>
-				</tr>  
-			-->
-			<tr>					
-				<td style="text-align:center"><img src='images/connectivity/known_connection.png' width="20px" border="0"/></td>
-				<td><font class='font5'>Known Connection</font></td>
-			</tr>
-			<tr>
-				<td style="text-align:center"><img src='images/connectivity/known_nonconnection.png' width="20px" border="0"/></td>
-				<td><font class='font5'>Known Non-Connection</font></td> 
-			</tr>
-			<tr height="20"></tr>
-			<tr>			
-				<td><font class='font5'>PCL:</font></td>
-				<td><font class='font5'>Principal Cell Layer</font></td>
-			</tr>
-			<!--  
-				<tr>
-					<td><font class='font5'>AIS:</font></td>
-					<td><font class='font5'>Axon Intial Segment</font></td>
-				</tr>
-		 	-->
-		</table>
-	</td>
-	
-  </tr>
-</table>
 </div>
 </body>
 </html>
