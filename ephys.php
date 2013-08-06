@@ -158,6 +158,10 @@ $(document).ready(function(){
  border-right-width: 0px; 
  border-bottom-width: 0px; 
  }
+ 
+ 
+ 
+ 
 </style>
 
 
