@@ -697,7 +697,7 @@ $(document).ready(function(){
 					<div class="markerVerticalText"><font>SOM</font></div>
 				</th>
 				<th width="2%" align="center" >	
-					<div class="markerVerticalText"><font>sub P</font></div>
+					<div class="markerVerticalText"><font>Sub P Rec</font></div>
 				</th>
 				<th width="2%" align="center" >	
 					<div class="markerVerticalText"><font>vAChT</font></div>
