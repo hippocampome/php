@@ -17,7 +17,7 @@ $n_markers = 36;
 
 // Name in alphabetic order for MARKERS: ************************************
 $name_markers = array(	
-				"0"=>"5HT_3",  // CLR modified this line
+				"0"=>"c5HT_3", 
 				"1" =>"a-act2", 
 				"2"=>"AChE",
 				"3" =>"CB",
@@ -140,15 +140,15 @@ function check_unvetted1($id, $id_property, $evidencepropertyyperel)
 				
 function check_color($variable, $unvetted, $conflict_note)
 {
-	if ($variable == 'weak_positive')
-	{
-		if ($unvetted == 1)
-			$link[0] = "<img src='images/marker/positive_unvetted.png' border='0' width='15px' />";
-		else
-			$link[0] = "<img src='images/marker/positive.png' border='0' width='15px' />";	
-		
-		$link[1] = $variable;
-	}
+//	if ($variable == 'weak_positive')
+//	{
+//		if ($unvetted == 1)
+//			$link[0] = "<img src='images/marker/weak_positive_unvetted.png' border='0' width='15px' />";
+//		else
+//			$link[0] = "<img src='images/marker/weak_positive.png' border='0' width='15px' />";	
+//		
+//		$link[1] = $variable;
+//	}
 	if ($variable == 'negative')
 	{
 		if ($unvetted == 1)
@@ -293,8 +293,7 @@ function check_color($variable, $unvetted, $conflict_note)
 	if ($variable == 'unknown')
 	{
 		$link[0] = "<img src='images/unknown.png' border='0' width='15px' />";
-		//$link[1] = $variable;
-		$link[1] = NULL;
+		$link[1] = $variable;
 	}	
 	
 	if ($variable == 'nothing')
@@ -422,11 +421,91 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <?php include ("function/icon.html"); ?>
-<title>Molecular Markers Matrix</title>
+<title>Markers Matrix</title>
+<style>
+
+.highlighted{
+	border: solid 1px Chartreuse !important;
+}
+#mark_tab_wrapper
+{
+left: 62px;
+}
+
+.fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix
+{
+width: 1012px; 
+height: 0px; 
+padding: 0px; 
+border-top-width: 0px; 
+border-right-width: 0px; 
+border-bottom-width: 0px;
+}
+</style>
 <script type="text/javascript" src="style/resolution.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="DataTables-1.9.4/media/js/jquery.js" type="text/javascript"></script>
+<script src="style/blockUI.js" type="text/javascript"></script>
+<script src="DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/media/css/demo_table_jui.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css"/>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	 $('.blockUI').remove();
+	var he;
+	var oTable=$('#mark_tab').dataTable({
+		"sScrollY": 700,
+		"sScrollX":"100%",
+		"bScrollCollapse": true,
+		"bAutoWidth":false,
+		"bJQueryUI":true,
+		"aaSorting": [],
+		"bFilter": false,
+		 "bPaginate": false,
+		"iDisplayLength":125,
+		"bDestroy": true,
+		"bSortClasses": false,
+	});
+
+	oTable.$('td').hover( function() {
+        var iCol = $('td', this.parentNode).index(this) % 37;
+        $('td:nth-child('+(iCol+1)+')', oTable.$('tr')).addClass( 'highlighted' );
+    }, function() {
+        oTable.$('td.highlighted').removeClass('highlighted');
+    });	
+	
+	
+	oTable.$('tr').mouseover( function() {
+		$(this).find("td").each(function(){ 
+			$(this).addClass("highlighted");
+
+			});
+		});
+	oTable.$('tr').mouseout(function(){
+			$(this).find("td").each(function(){ 
+				$(this).removeClass("highlighted");
+			});
+		});
+});
+
+
+</script>
+<style>
+ div.table_position div#mark_tab_wrapper.dataTables_wrapper div.fg-toolbar
+ { 
+ width: 1012px;
+ height: 0px;
+ padding: 0px;
+ border-top-width: 0px;
+ border-right-width: 0px; 
+ border-bottom-width: 0px; 
+ }
+</style>
 </head>
 
 <body>
+<div style="z-index: 1000; border: medium none; margin: 0pt; padding: 0pt; width: 100%; height: 100%; top: 0pt; left: 0pt; background-color: rgb(0, 0, 0); opacity: 0.6; cursor: wait; position: fixed;" class="blockUI blockOverlay"></div>
+<div style="z-index: 1001; position: fixed; padding: 0px; margin: 0px; width: 20%; top: 40%; left: 40%; text-align: center; color: rgb(0, 0, 0); border: 3px solid rgb(170, 170, 170); background-color: rgb(255, 255, 255); cursor: wait;" class="blockUI blockMsg blockPage"><span><img src="images/busy.gif" style="width:100%;"/><h4 style="line-height:3px;">Loading Page...</h4></span></div>
 
 <!-- COPY IN ALL PAGES -->
 <?php include ("function/title.php"); ?>
@@ -458,13 +537,15 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		else
 		{
 	?>
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<table width="90%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td align="left"> 
+				<td width="100%" align="left">
+					<font class='font1'><em>Matrix:</em></font> &nbsp; &nbsp; 
 					<a href='morphology.php'><font class="font7">Morphology</font></a> <font class="font7_A">|</font> 
 					<font class="font7_B">Molecular Markers</font> <font class="font7_A">|</font> 
-					<a href='ephys.php'><font class="font7">Electrophysiology</font></a><font class="font7_A">|</font> 
-					<a href='connectivity.php'><font class="font7">Connectivity</font></a>	
+					<a href='ephys.php'><font class="font7">Electrophysiology</font> </a><font class="font7_A">|</font> 
+					<a href='connectivity.php'><font class="font7"> Connectivity</font></a>
+					</font>	
 				</td>
 			</tr>
 			</table>
@@ -483,7 +564,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
     <td>
 		<!-- ****************  BODY **************** -->
 		
-		<font class='font1'>Molecular markers matrix</font>
+		<font class='font1'>Markers matrix</font>
 		<?php 
 			if ($research){
 				$full_search_string = $_SESSION['full_search_string'];
@@ -512,35 +593,131 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		<font class='font5'>Pale versions of the colors in the matrix indicate interpretations of neuronal property information that have not yet been fully verified.</font>
 		<br />
 
-
-<table border="0" cellspacing="0" cellpadding="0" class="tabellauno">
-	<tr>
- 		<td>
-
+</td></tr></table>
 				
-		<table border="1" cellspacing="0" cellpadding="0" class="table_10">
-		  <tr height="50px">
-		  
-			<td width="30%" align="center" colspan="3">	
+		<table border="1" cellspacing="0" cellpadding="0" class="table_10" id="mark_tab">
+		  <thead>
+		  <tr height="90px" >
+			<th width="28%" align="center">	
 				<font class='font1'>Neuron Type</font>		
-			</td>
-			<?php
-			for ($i=0; $i<$n_markers; $i++)
-			{
-				print ("<td width='$width2' align='center' >$link_image_markers[$i]</td>");				
-			}
-			?>
+			</th>
+			 <th width="2%" align="center">	
+					<div class="markerVerticalText"><font>5HT-3</font></div>
+				</th>			
+				<th width="2%" align="center">
+					<div class="markerVerticalText"><font>&prop;-act2</font></div>
+				</th>				
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>AChE</font></div>
+				</th>
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>CB</font></div>
+				</th>
+				
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>CB1</font></div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>CCK</font></div>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>CGRP</font></div>
+				</th>	
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>ChAt</font></div>
+				</th>	
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>CoupTF II</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>CR</font></div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>DYN</font></div>
+				</th>			
+				
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>EAAT3</font></div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>ENK</font></div>
+				</th>				
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>GABAa &prop;</font></div>
+				</th>
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>GAT-1</font></div>
+				</th>			
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>Gly T2</font></div>
+				</th>
+				
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>mGLuR1a</font></div>
+				</th>			
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>mGluR2/3</font></div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>mGLuR7a</font></div>
+				</th>
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>mGluR8a</font></div>
+				</th>			
+	
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>MOR</font></div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>Mus2R</font></div>
+				</th>
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>NKB</font></div>
+				</th>	
+				
+				<th width="2%" align="center">	
+					<div class="markerVerticalText"><font>nNos</font></div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>NPY</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>PPTA</font></div>
+				</th>	
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>PPTB</font></div>
+				</th>				
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>PV</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>RLN</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>SOM</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>Sub P Rec</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>vAChT</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>vGluT2</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>vGlu T3</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>VIAAT</font></div>
+				</th>
+				<th width="2%" align="center" >	
+					<div class="markerVerticalText"><font>VIP</font></div>
+				</th>
 		  </tr>
-		</table>
-		
-		</td>
-	</tr>
+		</thead>
+		<tbody>
 
-	<tr>
-		<td>
-		<div class="divinterno">
-		
-		
 		<?php
 		// calculate the first number for each zone, only in case of reseach ------------------------------------------------
 		$n_DG = 0;	
@@ -618,7 +795,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		}
 		// ------------------------------------------------------------------------------------------------------------------
 
-		print ("<table border='1' cellspacing='0' cellpadding='0' class='tabelladue'>");
+		//print ("<table border='1' cellspacing='0' cellpadding='0' class='tabelladue'>");
 		
 		// Retrive the NICKNAME in table TYPE 		
 		for ($i=0; $i<$number_type; $i++) //$number_type
@@ -627,7 +804,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo_property_id = array("CB"=>NULL, "CR"=>NULL,"CCK"=>NULL,"nNOS"=>NULL,
 							"NPY" =>NULL, "PV" =>NULL, "SOM" =>NULL, "VIP" =>NULL, "CB1" =>NULL,		
 							"ENK" =>NULL, "GABAa_alfa" =>NULL, "Mus2R" =>NULL, "Sub_P" =>NULL,	
-							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "5HT_3" =>NULL, "RLN" =>NULL, // CLR modified this line
+							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "c5HT_3" =>NULL, "RLN" =>NULL, 
 							"a-act2" =>NULL, "ChAT" =>NULL, "DYN" =>NULL, "EAAT3" =>NULL, 
 							"GlyT2" =>NULL, "mGluR1a" =>NULL, "mGluR7a" =>NULL, "mGluR8a" =>NULL,
 //							"MOR" =>NULL, "NKB" =>NULL, "NK1" =>NULL, "PPTA" =>NULL,
@@ -639,7 +816,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo_negative = array("CB"=>NULL, "CR"=>NULL,"CCK"=>NULL,"nNOS"=>NULL,
 							"NPY" =>NULL, "PV" =>NULL, "SOM" =>NULL, "VIP" =>NULL, "CB1" =>NULL,		
 							"ENK" =>NULL, "GABAa_alfa" =>NULL, "Mus2R" =>NULL, "Sub_P" =>NULL,	
-							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "5HT_3" =>NULL, "RLN" =>NULL, // CLR modified this line
+							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "c5HT_3" =>NULL, "RLN" =>NULL, 
 							"a-act2" =>NULL, "ChAT" =>NULL, "DYN" =>NULL, "EAAT3" =>NULL, 
 							"GlyT2" =>NULL, "mGluR1a" =>NULL, "mGluR7a" =>NULL, "mGluR8a" =>NULL,
 //							"MOR" =>NULL, "NKB" =>NULL, "NK1" =>NULL, "PPTA" =>NULL,
@@ -651,7 +828,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo_positive = array("CB"=>NULL, "CR"=>NULL,"CCK"=>NULL,"nNOS"=>NULL,
 							"NPY" =>NULL, "PV" =>NULL, "SOM" =>NULL, "VIP" =>NULL, "CB1" =>NULL,		
 							"ENK" =>NULL, "GABAa_alfa" =>NULL, "Mus2R" =>NULL, "Sub_P" =>NULL,	
-							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "5HT_3" =>NULL, "RLN" =>NULL, // CLR modified this line
+							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "c5HT_3" =>NULL, "RLN" =>NULL, 
 							"a-act2" =>NULL, "ChAT" =>NULL, "DYN" =>NULL, "EAAT3" =>NULL, 
 							"GlyT2" =>NULL, "mGluR1a" =>NULL, "mGluR7a" =>NULL, "mGluR8a" =>NULL,
 //							"MOR" =>NULL, "NKB" =>NULL, "NK1" =>NULL, "PPTA" =>NULL,
@@ -663,7 +840,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo_weak_positive = array("CB"=>NULL, "CR"=>NULL,"CCK"=>NULL,"nNOS"=>NULL,
 							"NPY" =>NULL, "PV" =>NULL, "SOM" =>NULL, "VIP" =>NULL, "CB1" =>NULL,		
 							"ENK" =>NULL, "GABAa_alfa" =>NULL, "Mus2R" =>NULL, "Sub_P" =>NULL,	
-							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "5HT_3" =>NULL, "RLN" =>NULL, // CLR modified this line
+							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "c5HT_3" =>NULL, "RLN" =>NULL, 
 							"a-act2" =>NULL, "ChAT" =>NULL, "DYN" =>NULL, "EAAT3" =>NULL, 
 							"GlyT2" =>NULL, "mGluR1a" =>NULL, "mGluR7a" =>NULL, "mGluR8a" =>NULL,
 //							"MOR" =>NULL, "NKB" =>NULL, "NK1" =>NULL, "PPTA" =>NULL,
@@ -675,7 +852,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo_unknown = array("CB"=>NULL, "CR"=>NULL,"CCK"=>NULL,"nNOS"=>NULL,
 							"NPY" =>NULL, "PV" =>NULL, "SOM" =>NULL, "VIP" =>NULL, "CB1" =>NULL,		
 							"ENK" =>NULL, "GABAa_alfa" =>NULL, "Mus2R" =>NULL, "Sub_P" =>NULL,	
-							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "5HT_3" =>NULL, "RLN" =>NULL, // CLR modified this line
+							"VgluT3" =>NULL, "CoupTF_2" =>NULL, "c5HT_3" =>NULL, "RLN" =>NULL, 
 							"a-act2" =>NULL, "ChAT" =>NULL, "DYN" =>NULL, "EAAT3" =>NULL, 
 							"GlyT2" =>NULL, "mGluR1a" =>NULL, "mGluR7a" =>NULL, "mGluR8a" =>NULL,
 //							"MOR" =>NULL, "NKB" =>NULL, "NK1" =>NULL, "PPTA" =>NULL,
@@ -727,8 +904,8 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				if ($part[$ii] == 'Sub P')
 					$part[$ii] = 'Sub_P';
-				if ($part[$ii] == '5HT-3')						// CLR modified this line
-					$part[$ii] = '5HT_3';								// CLR modified this line
+				if ($part[$ii] == '5HT-3')
+					$part[$ii] = 'c5HT_3';
 				if ($part[$ii] == 'alpha-actinin-2')
 					$part[$ii] = 'a-act2';							
 				if ($part[$ii] == 'GAT-1')
@@ -763,7 +940,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo[Sub_P] = check_positive_negative('Sub_P', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);
 			$hippo[vGluT3] = check_positive_negative('vGluT3', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);
 			$hippo[CoupTF_2] = check_positive_negative('CoupTF_2', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);
-			$hippo["5HT_3"] = check_positive_negative('5HT_3', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown); // CLR modified this line
+			$hippo[c5HT_3] = check_positive_negative('c5HT_3', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);
 			$hippo[RLN] = check_positive_negative('RLN', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);			
 			$hippo[a-act2] = check_positive_negative('a-act2', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);
 			$hippo[ChAT] = check_positive_negative('ChAT', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);
@@ -786,7 +963,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			$hippo[mGluR2_3] = check_positive_negative('mGluR2_3', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);	
 			$hippo[CGRP] = check_positive_negative('CGRP', $hippo_positive, $hippo_negative, $hippo_weak_positive, $hippo_unknown);	
 						
-			if (!$research)
+			/*if (!$research)
 			{
 				if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601))    		
 				{										
@@ -799,12 +976,12 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				{
 				 	print ("<tr height='4px'><td colspan='40' bgcolor='#FF0000'></td></tr>");
 				}
-			}			
+			}*/			
 
 			$select_nick_name2 = str_replace(':', '_', $nickname);
 			$select_nick_name_check  = $select_nick_name2."_check";
 							
-			print ("<tr id='$select_nick_name2'>");
+			/*print ("<tr id='$select_nick_name2'>");
 			
 				if ($position < 200)
 				{
@@ -885,8 +1062,8 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 				
 				print ("<td width='3%' align='center' bgcolor='$bkcolor'>	");
 				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
-				print ("</td>");	
-				print ("<td width='24%' align='center'>	");
+				print ("</td>");*/	
+				print ("<tr><td style='width:28%;' align='center'>");
 					print ("<a href='neuron_page.php?id=$id' target='_blank' class='font_cell'>");
 					
 					if (strpos($nickname, '(+)') == TRUE)
@@ -939,21 +1116,15 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					}
 				}
 				// ---------------------------------------------------------------------------------------------------------------------------------
+				print("</tr>");
 		}
 
-		print ("</tr>");
-		print ("</table>");
+		print ("</tbody></table>");
 		?>
 		
-		</div>
-		</td>
-	</tr>
-
-</table>			
 		
-		<br /><br />		
-	</td>
-  </tr>
+		
+		
 </table>
 </div>
 </body>
