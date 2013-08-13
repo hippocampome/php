@@ -402,12 +402,8 @@ border-bottom-width: 0px;
 					<div class="verticalText">VI</div>
 				</th>
 			  </tr>
-			  </thead>
-			  <tbody>
-			  
-			
-		
-		<form name="nomeform">
+			</thead>
+	   <tbody>
 		
 		<?php
 
@@ -1264,7 +1260,7 @@ border-bottom-width: 0px;
 				print ("</tr>");
 		}
 		
-		print ("</form></tbody></table>");
+		print ("</tbody></table>");
 		?>
 		
 		</div>
