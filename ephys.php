@@ -119,6 +119,15 @@ $epdata = new epdata($class_epdata);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<style>
+
+
+#ephys_tab_wrapper
+{
+left: 62px;
+}
+
+</style>
 <script language="javascript">
 
 function ctr(select_nick_name2, color, select_nick_name_check)
@@ -138,6 +147,69 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 <?php include ("function/icon.html"); ?>
 <title>Ephys Matrix</title>
 <script type="text/javascript" src="style/resolution.js"></script>
+<script src="DataTables-1.9.4/media/js/jquery.js" type="text/javascript"></script>
+<script src="DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/media/css/demo_table_jui.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables-1.9.4/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css"/>
+<style>
+.highlighted{
+  	border: solid 1px Chartreuse !important;
+}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	$('.blockUI').remove();
+	var he;
+	var oTable=$('#ephys_tab').dataTable({
+		"sScrollY": 700,
+		"sScrollX":"100%",
+		"bScrollCollapse": true,
+		"bAutoWidth":false,
+		"bJQueryUI":true,
+		"aaSorting": [],
+		"bFilter": false,
+		 "bPaginate": false,
+		"iDisplayLength":125,
+		"bDestroy": true,
+		"bSortClasses": false
+	});
+
+	
+	oTable.$('td').hover( function() {
+        var iCol = $('td', this.parentNode).index(this) % 11;
+        $('td:nth-child('+(iCol+1)+')', oTable.$('tr')).addClass( 'highlighted' );
+    }, function() {
+        oTable.$('td.highlighted').removeClass('highlighted');
+    });	
+
+	oTable.$('tr').mouseover( function() {
+		$(this).find("td").each(function(){ 
+			$(this).addClass("highlighted");
+
+			});
+		});
+	oTable.$('tr').mouseout(function(){
+			$(this).find("td").each(function(){ 
+				$(this).removeClass("highlighted");
+			});
+		});
+});
+
+
+</script>
+<style>
+ div.table_position div#ephys_tab_wrapper.dataTables_wrapper div.fg-toolbar
+ { 
+ width: 1012px;
+ height: 0px;
+ padding: 0px;
+ border-top-width: 0px;
+ border-right-width: 0px; 
+ border-bottom-width: 0px; 
+ }
+
+</style>
 </head>
 
 <body>
@@ -164,7 +236,9 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		}
 	?>	
 	</div>
-		
+<div style="z-index: 1000; border: medium none; margin: 0pt; padding: 0pt; width: 100%; height: 100%; top: 0pt; left: 0pt; background-color: rgb(0, 0, 0); opacity: 0.6; cursor: wait; position: fixed;" class="blockUI blockOverlay"></div>
+<div style="z-index: 1001; position: fixed; padding: 0px; margin: 0px; width: 20%; top: 40%; left: 35%; text-align: center; color: rgb(0, 0, 0); border: 3px solid rgb(170, 170, 170); background-color: rgb(255, 255, 255); cursor: wait;" class="blockUI blockMsg blockPage"><span><img src="images/busy.gif" align="left" style="margin-left: 50px; line-height: 4px;"/><font style="line-height: 10px;"><h3>Loading Page...</h3></font></span></div>
+
 <div class='sub_menu'>
 	<?php
 		if ($research);
@@ -219,54 +293,49 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<font class='font5'>Pale versions of the colors in the matrix indicate interpretations of neuronal property information that have not yet been fully verified.</font>
 		<br /><br />
-			
+			</td>
+	</tr></table>
 				
-<table border="0" cellspacing="0" cellpadding="0" class="tabellauno">
-	<tr>
- 		<td>
-		  		<table border="0" cellspacing="1" cellpadding="0" class="table_10">
-				  <tr>
-					<td width="30%" align="center">
+<!-- <table border="0" cellspacing="0" cellpadding="0" class="tabellauno" id="ephys_tab"> -->
+	<table border="1" cellspacing="1" cellpadding="0" class="table_10" id="ephys_tab">
+				<thead>
+				  <tr id="ephysRow">
+					<th width="23.5%" align="center" id="firstEphys">
 						<font class='font1'>Neuron Type	</font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>V<sub>rest</sub><br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>R<sub>in</sub><br/><small>(M&Omega;)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>&tau;<sub>m</sub><br/><small>(ms)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>V<sub>thresh</sub><br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>Fast AHP<br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>AP<sub>ampl</sub><br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>AP<sub>width</sub><br/><small>(ms)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>Max F.R.<br/><small>(Hz)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>Slow AHP<br/><small>(mV)</small></font>
-					</td>
-					<td width="7%" align="center" bgcolor="#999999">
+					</th>
+					<th width="7%" align="center" bgcolor="#999999">
 						<font class='font_table_index5'>Sag ratio</font>
-					</td>
+					</th>
 				  </tr>
-				</table>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-		<div class="divinterno">
+		</thead>
+		<tbody>
 		<?php
 		// calculate the first number for each zone, only in case of reseach ------------------------------------------------
 		$n_DG = 0;	
@@ -344,7 +413,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 		}
 		// ------------------------------------------------------------------------------------------------------------------		
 		
-		print ("<table border='1' cellspacing='1' cellpadding='0' class='tabelladue1'>");
+		//print ("<table border='1' cellspacing='1' cellpadding='0' class='tabelladue1'>");
 		
 		$n_ephys = 10;
 		
@@ -467,14 +536,14 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 			{
 				if ( ($position == 201) || ($position == 301) || ($position == 401) || ($position == 501) || ($position == 601))    		
 				{										
-					print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
+					//print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
 				}
 			}
 			else
 			{
 				if ( ($id_type == $first_CA3) || ($id_type == $first_CA2) || ($id_type == $first_CA1) || ($id_type == $first_SUB) || ($id_type == $first_EC))
 				{
-				 	print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
+				 	//print ("<tr height='4px'><td colspan='35' bgcolor='#FF0000'></td></tr>");
 				}
 			}			
 			
@@ -513,56 +582,56 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 					$bkcolor='#FFFFFF';
 				}
 
-				print ("<td width='3%' align='center' class='cella_1'>");
+				//print ("<td width='3%' align='center' class='cella_1'>");
 
 				if ($research) 
-				{
-					if ($id_type == $first_DG)
-							print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");		
-					if ($id_type == $first_CA3)
-						print ("<font class='font2' color='#BF7474'> <strong>CA3</strong> </font> ");						
-					if ($id_type == $first_CA2)
-						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");					
-					if ($id_type == $first_CA1)
-						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");							
-					if ($id_type == $first_SUB)
-						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");					
-					if ($id_type == $first_EC)
-						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");									
+ 				{
+// 					if ($id_type == $first_DG)
+// 							print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");		
+// 					if ($id_type == $first_CA3)
+// 						print ("<font class='font2' color='#BF7474'> <strong>CA3</strong> </font> ");						
+// 					if ($id_type == $first_CA2)
+// 						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");					
+// 					if ($id_type == $first_CA1)
+// 						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");							
+// 					if ($id_type == $first_SUB)
+// 						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");					
+// 					if ($id_type == $first_EC)
+// 						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");									
 				}
 				else
 				{	
-					if ($position == 101)
-						print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");				
-					if ($position == 102)
-						print ("<font class='font2' color='#770000'> (18) </font> ");				
-					if ($position == 201)
-						print ("<font class='font2' color='#BF7474'> <strong>CA3</strong> </font> ");		
-					if ($position == 202)
-						print ("<font class='font2' color='#BF7474'> (25) </font> ");				
-					if ($position == 301)
-						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");			
-					if ($position == 302)
-						print ("<font class='font2' color='#FFCC00'> (5) </font> ");				
-					if ($position == 401)
-						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");		
-					if ($position == 402)
-						print ("<font class='font2' color='#FF6103'> (40) </font> ");				
-					if ($position == 501)
-						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");				
-					if ($position == 502)
-						print ("<font class='font2' color='#FFCC33'> (3) </font> ");				
-					if ($position == 601)
-						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");	
-					if ($position == 602)
-						print ("<font class='font2' color='#336633'> (31) </font> ");				
+// 					if ($position == 101)
+// 						print ("<font class='font2' color='#770000'> <strong>DG</strong> </font> ");				
+// 					if ($position == 102)
+// 						print ("<font class='font2' color='#770000'> (18) </font> ");				
+// 					if ($position == 201)
+// 						print ("<font class='font2' color='#BF7474'> <strong>CA3</strong> </font> ");		
+// 					if ($position == 202)
+// 						print ("<font class='font2' color='#BF7474'> (25) </font> ");				
+// 					if ($position == 301)
+// 						print ("<font class='font2' color='#FFCC00'> <strong>CA2</strong> </font> ");			
+// 					if ($position == 302)
+// 						print ("<font class='font2' color='#FFCC00'> (5) </font> ");				
+// 					if ($position == 401)
+// 						print ("<font class='font2' color='#FF6103'> <strong>CA1</strong> </font> ");		
+// 					if ($position == 402)
+// 						print ("<font class='font2' color='#FF6103'> (40) </font> ");				
+// 					if ($position == 501)
+// 						print ("<font class='font2' color='#FFCC33'> <strong>SUB</strong> </font> ");				
+// 					if ($position == 502)
+// 						print ("<font class='font2' color='#FFCC33'> (3) </font> ");				
+// 					if ($position == 601)
+// 						print ("<font class='font2' color='#336633'> <strong>EC</strong> </font> ");	
+// 					if ($position == 602)
+// 						print ("<font class='font2' color='#336633'> (31) </font> ");				
 				}
 					
-				print ("</td>");
+				//print ("</td>");
 
-				print ("<td width='3%' align='center' bgcolor='$bkcolor'>	");
-				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
-				print ("</td>");
+// 				print ("<td width='3%' align='center' bgcolor='$bkcolor'>	");
+// 				print ("<input type='checkbox' name='$select_nick_name2' value='$select_nick_name2' onClick=\"ctr('$select_nick_name2', '$bkcolor', '$select_nick_name_check')\" id='$select_nick_name_check' />");
+// 				print ("</td>");
 
 			
 				print ("<td width='23.5%' align='center'>	");
@@ -611,16 +680,8 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 								
 			print ("</tr>");
 		}
-		print ("</table>");
+		print ("</tbody></table>");
 		?>		
 		</div>
-		</td>
-	</tr>
-</table>		
-				
-	</td>
-  </tr>
-</table>
-</div>
 </body>
 </html>

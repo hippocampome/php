@@ -25,9 +25,11 @@ else if ((w == 1024) && (h == 768))
 {
 	 document.write("<link rel='stylesheet' type='text/css' href='style/style_1024_768.css'>");
 }
+else if(navigator.userAgent.indexOf("MSIE") != -1)
+{
+	 document.write("<link rel='stylesheet' type='text/css' href='style/ie_style.css'>");
+}
 else
 {
 	 document.write("<link rel='stylesheet' type='text/css' href='style/style.css'>");
 }
-
-
