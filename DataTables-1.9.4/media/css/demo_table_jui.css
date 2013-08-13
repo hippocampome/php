@@ -106,9 +106,8 @@ table.display thead th div.DataTables_sort_wrapper span {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables features
  */
-
 .dataTables_wrapper {
-	position: relative;
+	position: absolute;                    
 	clear: both;
 }
 
@@ -487,7 +486,6 @@ tr.even.gradeU td.sorting_2 {
 tr.even.gradeU td.sorting_3 {
 	background-color: #e2e2e2;
 }
-
 
 /*
  * Row highlighting example

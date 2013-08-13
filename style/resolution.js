@@ -30,4 +30,12 @@ else
 	 document.write("<link rel='stylesheet' type='text/css' href='style/style.css'>");
 }
 
+if(navigator.userAgent.indexOf("MSIE") == -1)
+{
+	 document.write("<link rel='stylesheet' type='text/css' href='style/style.css'>");
+}
+else
+{
+	 document.write("<link rel='stylesheet' type='text/css' href='style/ie_style.css'>");
+}
 
