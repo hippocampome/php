@@ -163,7 +163,7 @@ $(document).ready(function(){
 	$('body').css("cursor","default");
 	var he;
 	var oTable=$('#ephys_tab').dataTable({
-		"sScrollY": 700,
+		"sScrollY": 500,
 		"sScrollX":"100%",
 		"bScrollCollapse": true,
 		"bAutoWidth":false,
