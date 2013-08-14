@@ -151,6 +151,7 @@ $hippo_select = $_SESSION['hippo_select'];
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
 	$('.blockUI').remove();
+	$('body').css("cursor","default");
 	var he;
 	var oTable=$('#morpho_tab').dataTable({
 		"sScrollY": 700,

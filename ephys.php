@@ -160,6 +160,7 @@ function ctr(select_nick_name2, color, select_nick_name_check)
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
 	$('.blockUI').remove();
+	$('body').css("cursor","default");
 	var he;
 	var oTable=$('#ephys_tab').dataTable({
 		"sScrollY": 700,

@@ -80,6 +80,7 @@ width:1089px;
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
 	$('.blockUI').remove();
+	$('body').css("cursor","default");
 	var he;
 	var oTable=$('#connectivity_table').dataTable({
 			"sScrollY": 400,
